@@ -1,0 +1,16 @@
+(defpoll volume
+    :interval "1s"
+    :run-while true
+
+    "./scripts/get-volume.sh"
+)
+
+(defwidget audio []
+    (button
+        :onclick "./scripts/open-pavucontrol"
+        (box
+            ""
+            "${volume}"
+        )
+    )   
+)

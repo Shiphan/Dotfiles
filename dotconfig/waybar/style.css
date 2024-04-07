@@ -1,10 +1,8 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "Noto Sans", "Material Symbols Rounded";
     font-family: "Noto Sans", "Material Symbols Rounded", sans-serif;
     /* font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
     font-size: 16px;
-    border-radius: 6px;
 }
 
 window#waybar {
@@ -38,6 +36,12 @@ window#waybar.chromium {
     border: none;
 }
 
+.module {
+    margin: 8px 2px;
+    padding: 2px 4px;
+    border-radius: 6px;
+}
+
 button {
     /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
@@ -52,8 +56,11 @@ button:hover {
     box-shadow: inset 0 -3px #ffffff;
 }
 
+#workspaces {
+    background-color: #64727D;
+}
+
 #workspaces button {
-    padding: 0 5px;
     background-color: transparent;
     color: #ffffff;
 }
@@ -62,9 +69,9 @@ button:hover {
     background: rgba(0, 0, 0, 0.2);
 }
 
-#workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+#workspaces button.active {
+    background-color: #ffffff;
+    color: #64727D;
 }
 
 #workspaces button.urgent {
@@ -97,19 +104,13 @@ button:hover {
     color: #ffffff;
 }
 
-#window,
+#window {
+    background-color: #64727D;
+    padding: 6px 2px;
+}
+
 #workspaces {
     margin: 0 4px;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
 }
 
 #clock {
@@ -276,29 +277,6 @@ label:focus {
     background-color: #51a37a;
 }
 
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
-}
 
 #scratchpad {
     background: rgba(0, 0, 0, 0.2);

@@ -1,21 +1,30 @@
-#!/bin/bash
+# system config directory
+configDir="$HOME/.config"
+# new config directory
+dotconfigDir="./dotconfig"
 
-# a資料夾
-adir="dotconfig"
+ls $dotconfigDir
+echo
+find ./dotconfig/ -type f
 
-# b資料夾
-bdir="~/.config"
+echo
+echo "$(find ./dotconfig/ -type f | wc -l) file(s) will be copy to $configDir"
 
-# 計算a資料夾中存在多少個b資料夾中的檔案
-count=0
-for file in "$adir"/*; do
-  if [ -f "$file" ]; then
-    if [ -f "$bdir/$file" ]; then
-      ((count++))
-      echo "$file"
-    fi
-  fi
-done
+echo
+echo "this process may replace some file."
+echo "make sure to bake up important files in $configDir."
+echo
 
-# 輸出結果
-echo "There are $count files in the directory $adir that also exist in the directory $bdir."
+read -p ":: Proceed with copying? [y/N] " yn
+case $yn in
+    [Yy]* ) ;;
+    * ) exit;;
+esac
+
+echo "copying $((replaceCount + newCount)) file(s) from $dotconfigDir to $configDir..."
+
+# copy to config directory
+cp -r $dotconfigDir $configDir
+
+echo "not copying"
+echo "done"

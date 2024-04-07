@@ -1,16 +1,30 @@
 * {
   all: unset; //Unsets everything so you can style everything from scratch
+  font-size: large;
+  font-family: "Noto Sans", "Material Symbols Rounded", sans-serif;
 }
 
 //Global Styles
-.bar {
-  background-color: #3a3a3a;
+.statusbar {
+  background-color: transparent;
   color: #b0b4bc;
-  padding: 10px;
+  padding: 10px 10px 0;
+}
+
+.statusbar>*>*>* {
+  background-color: #5f5f5f;
+  padding: 2px 8px;
+  border-radius: 0.5em;
+}
+
+.statusbar>*>*>*>* {
+  padding: 0;
+  margin: 0;
 }
 
 // Styles on classes (see eww.yuck for more information)
 
+/*
 .sidestuff slider {
   all: unset;
   color: #ffd5cd;
@@ -52,4 +66,4 @@
 .workspaces button:hover {
   color: #D35D6E;
 }
-
+*/

@@ -1,0 +1,51 @@
+
+(defvar power-mode 0)
+
+(defwidget power []
+    (stack
+        :transition "slideright"
+        :same-size true
+        :selected power-mode
+
+        (box
+            ""
+            "${EWW_BATTERY}"
+        )
+        (battery)
+        (charging)
+    )
+)
+
+(defwidget battery []
+    (stack
+        :transition "slidedown"
+        :same-size true
+        :selected 0
+
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+    )
+)
+
+(defwidget charging []
+    (stack
+        :transition "slidedown"
+        :same-size true
+        :selected 0
+
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+    )
+)
