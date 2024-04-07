@@ -3,12 +3,16 @@ configDir="$HOME/.config"
 # new config directory
 dotconfigDir="./dotconfig"
 
+
+configCounter=$(find ./dotconfig/ -type f | wc -l) 
+
+config
 ls $dotconfigDir
 echo
 find ./dotconfig/ -type f
 
 echo
-echo "$(find ./dotconfig/ -type f | wc -l) file(s) will be copy to $configDir"
+echo "$configCounter file(s) will be copy to $configDir"
 
 echo
 echo "this process may replace some file."
@@ -21,10 +25,9 @@ case $yn in
     * ) exit;;
 esac
 
-echo "copying $((replaceCount + newCount)) file(s) from $dotconfigDir to $configDir..."
+echo "copying $configCounter file(s) from $dotconfigDir to $configDir..."
 
 # copy to config directory
-cp -r $dotconfigDir $configDir
+cp -r $dotconfigDir/. $configDir
 
-echo "not copying"
 echo "done"
