@@ -32,9 +32,13 @@
         :space-evenly false
         :spacing 6
 
+        (button
+            :onclick "bash ./scripts/open-hyprlock.sh"
+            ""
+        )   
         (clock)
-        (window_w)
-        ;;"submap"
+        ; (window_w)
+        ; "submap"
     )
 )
 
@@ -59,8 +63,13 @@
         "注"
         
         (audio)
-        
-        ""
+        (box        
+            ""
+            ;"${EWW_CPU}"
+            ""
+            ;"${EWW_RAM}"
+            ;"${EWW_TEMPS}"
+        )
         ""
         (power)
         ""

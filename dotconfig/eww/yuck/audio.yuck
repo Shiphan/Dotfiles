@@ -7,7 +7,7 @@
 
 (defwidget audio []
     (button
-        :onclick "./scripts/open-pavucontrol"
+        :onclick "bash ./scripts/open-pavucontrol.sh"
         (box
             ""
             "${volume}"
