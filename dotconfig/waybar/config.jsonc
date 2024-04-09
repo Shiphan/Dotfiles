@@ -16,7 +16,7 @@
     ],
     "modules-right": [
         // "hyprland/language",
-        // "wireplumber",
+        "wireplumber",
         "pulseaudio",
         "network",
         "bluetooth",
@@ -175,6 +175,13 @@
         "tooltip-format": "{status}",
         "tooltip-format-enumerate-connected": "{device_enumerate}"
 
+    },
+    "wireplumber": {
+        "format": "{volume}%",
+        "format-muted": "muted",
+        "on-click": "pavucontrol",
+        "max-volume": 150,
+        "scroll-step": 0.2
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float

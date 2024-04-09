@@ -100,7 +100,7 @@
     (eventbox 
         :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}"
         :class "workspaces-widget"
-        (box :space-evenly true
+        (box :space-evenly false
             (label 
                 :text "${workspaces}${current_workspace}" 
                 :visible false
@@ -113,7 +113,7 @@
                         :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
                         
                         (label 
-                            :text "${workspace.id}"
+                            :text " ${workspace.id} "
                         )
                     )
                 )
