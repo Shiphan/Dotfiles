@@ -8,8 +8,14 @@
         :selected power-mode
 
         (box
+            :space-evenly false
+
             ""
-            "${EWW_BATTERY}"
+            (button
+                :onclick "notify-send 'click ${EWW_BATTERY}"
+
+                "power"
+            )
         )
         (battery)
         (charging)
