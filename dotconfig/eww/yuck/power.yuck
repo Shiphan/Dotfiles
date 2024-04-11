@@ -1,24 +1,24 @@
-
-(defvar power-mode 0)
+(defvar batteryname "bat1")
+(defvar batterylevel 5)
+(defvar isbatterycharging false)
 
 (defwidget power []
     (stack
         :transition "slideright"
         :same-size true
-        :selected power-mode
+        :selected {EWW_BATTERY == "" ? 0 : 1}
+        ; :selected {"{bat1: 60}" == "" ? 0 : 1}
+        ; :selected 1
 
-        (box
-            :space-evenly false
+        ""
+        (stack
+            :transition "slideright"
+            :same-size true
+            :selected {isbatterycharging ? 1 : 0}
 
-            ""
-            (button
-                :onclick "notify-send 'click ${EWW_BATTERY}"
-
-                "power"
-            )
+            (battery)
+            (charging)
         )
-        (battery)
-        (charging)
     )
 )
 
@@ -26,7 +26,7 @@
     (stack
         :transition "slidedown"
         :same-size true
-        :selected 0
+        :selected batterylevel
 
         ""
         ""
@@ -43,7 +43,7 @@
     (stack
         :transition "slidedown"
         :same-size true
-        :selected 0
+        :selected batterylevel
 
         ""
         ""

@@ -9,6 +9,8 @@
     (button
         :onclick "bash ./scripts/open-pavucontrol.sh"
         (box
+            :space-evenly false
+
             ""
             "${volume}"
         )

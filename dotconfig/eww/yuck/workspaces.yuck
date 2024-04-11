@@ -13,7 +13,11 @@
     (eventbox 
         :onscroll "bash ./change-active-workspace {} ${current_workspace}"
         :class "workspaces-widget"
-        (box :space-evenly false
+        
+        (box 
+            :space-evenly false
+            :spacing 8
+
             (label 
                 :text "${workspaces}${current_workspace}" 
                 :visible false
@@ -23,10 +27,11 @@
                     :onclick "hyprctl dispatch workspace ${workspace.id}"
 
                     (box 
+                        :space-evenly false
                         :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
                         
                         (label 
-                            :text " ${workspace.id} "
+                            :text "${workspace.id}"
                         )
                     )
                 )

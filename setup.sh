@@ -6,7 +6,7 @@ dotconfigDir="./dotconfig"
 
 configCounter=$(find ./dotconfig/ -type f | wc -l) 
 
-config
+echo "configs:"
 ls $dotconfigDir
 echo
 find ./dotconfig/ -type f

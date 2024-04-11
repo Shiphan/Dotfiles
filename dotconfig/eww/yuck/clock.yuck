@@ -1,0 +1,3 @@
+(defwidget clock []
+    "${formattime(EWW_TIME, "%l:%M %p")}"
+)

@@ -25,6 +25,12 @@
     )
 )
 
+(include "./yuck/clock.yuck")
+(include "./yuck/workspaces.yuck")
+(include "./yuck/audio.yuck")
+(include "./yuck/devicemonitor.yuck")
+(include "./yuck/power.yuck")
+
 (defwidget left []
     (box
         :halign "start"
@@ -61,31 +67,13 @@
         :spacing 6
 
         "注"
-        
         (audio)
-        (box
-            :space-evenly false
-
-            ""
-            "${round(EWW_CPU.avg, 0)}%"
-            ""
-            "${round(EWW_RAM.used_mem_perc, 0)}%"
-            ;"${EWW_TEMPS}"
-        )
+        "network"
+        (devicemonitor)
         ""
         (power)
         ""
     )
-)
-
-(defpoll time
-    :interval "1s"
-    :run-while true
-
-    `date +"%l:%M %p"`
-)
-(defwidget clock []
-    "${time}"
 )
 
 
@@ -96,12 +84,12 @@
 )
 (defwidget window_w []
     (box
+        :space-evenly false
+
         (label 
             :text "${window}"
         )
     )
 )
 
-(include "./yuck/power.yuck")
-(include "./yuck/audio.yuck")
-(include "./yuck/workspaces.yuck")
+

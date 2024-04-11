@@ -1,0 +1,25 @@
+(defwidget devicemonitor []
+    (box
+        :space-evenly false
+        :spacing 6
+
+        (box
+            :space-evenly false
+
+            ""
+            "${round(EWW_CPU.avg, 0)}%"
+        )
+        (box
+            :space-evenly false
+
+            ""
+            "${round(EWW_RAM.used_mem_perc, 0)}%"
+        )
+        (box
+            :space-evenly false
+            
+            ""
+            "${round(EWW_TEMPS.K10TEMP_TCCD1, 0)}°C"
+        )
+    )
+)
