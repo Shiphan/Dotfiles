@@ -1,23 +1,30 @@
-(defvar batteryname "bat1")
-(defvar batterylevel 5)
-(defvar isbatterycharging false)
+(defpoll batterylevel
+    :interval "2s"
+
+    `bash ./statusbar/scripts/get-battery-level.sh`
+)
 
 (defwidget power []
     (stack
         :transition "slideright"
         :same-size true
         :selected {EWW_BATTERY == "" ? 0 : 1}
-        ; :selected {"{bat1: 60}" == "" ? 0 : 1}
-        ; :selected 1
 
         ""
-        (stack
-            :transition "slideright"
-            :same-size true
-            :selected {isbatterycharging ? 1 : 0}
+        (box
+            :space-evenly false
 
-            (battery)
-            (charging)
+            (stack
+
+                :transition "slidedown"
+                :same-size true
+                ;:selected {isbatterycharging ? 1 : 0}
+                :selected {EWW_BATTERY.BAT1.status == "Charging" ? 1 : 0}
+
+                (battery)
+                (charging)
+            )
+            "${EWW_BATTERY.BAT1.capacity}"
         )
     )
 )

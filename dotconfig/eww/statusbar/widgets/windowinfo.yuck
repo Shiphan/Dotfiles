@@ -1,0 +1,27 @@
+(deflisten windowinfojson
+    `bash ./statusbar/scripts/get-window-info.sh`
+)
+(defwidget windowinfo []
+    (box
+        :space-evenly true
+
+        (stack
+            :selected {"${windowinfojson.class ?: ""}" == "" ?
+                3 :
+                windowinfojson.fullscreen ?
+                    0 :
+                    windowinfojson.floating ?
+                        1 :
+                        2}
+
+            ""
+            ""
+            ""
+            ""
+        )
+        (label
+            :visible {windowinfojson.xwayland ?: false}
+            :text "X"
+        )
+    )
+)

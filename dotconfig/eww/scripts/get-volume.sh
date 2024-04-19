@@ -1,1 +1,0 @@
-wpctl get-volume @DEFAULT_AUDIO_SINK@ | tr -d "Volume: " | awk '{print $1 * 100}'

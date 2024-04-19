@@ -1,0 +1,42 @@
+(deflisten network
+    `bash ./statusbar/scripts/get-network-info.sh`
+)
+(defpoll wifisignal
+    :interval "2s"
+    :initial "{\"value\":0,\"level\":0}"
+
+    `bash ./statusbar/scripts/get-wifi-signal.sh`
+)
+
+(defwidget network []
+        (box
+            :space-evenly false
+            :tooltip "${network.name} [${wifisignal.value}] ${EWW_NET.wlp1s0.NET_UP} / ${EWW_NET.wlp1s0.NET_DOWN}"
+
+            (stack
+                :selected {network.enabled ?
+                    network.connected ?
+                        network.full ?
+                        3 :
+                        2 :
+                    1 :
+                    0
+                }
+
+                ""
+                ""
+                ""
+                (stack
+                    :selected {wifisignal.level}
+
+                    ""
+                    ""
+                    ""
+                    ""
+                    ""
+                    ""
+                )
+            )
+        )
+)
+

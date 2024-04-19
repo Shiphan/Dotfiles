@@ -7,89 +7,11 @@
         :height "10px"
         :anchor "top center"
     )
-    :stacking "overlay"
+    :stacking "fg"
     :exclusive true
     :focusable false
     :namespace "ewwStatusBar"
 
     (bar)
 )
-
-(defwidget bar []
-    (centerbox
-        :orientation "horizontal"
-
-        (left)
-        (center)
-        (right)
-    )
-)
-
-(include "./yuck/clock.yuck")
-(include "./yuck/workspaces.yuck")
-(include "./yuck/audio.yuck")
-(include "./yuck/devicemonitor.yuck")
-(include "./yuck/power.yuck")
-
-(defwidget left []
-    (box
-        :halign "start"
-        :orientation "horizontal"
-        :space-evenly false
-        :spacing 6
-
-        (button
-            :onclick "bash ./scripts/open-hyprlock.sh"
-            ""
-        )   
-        (clock)
-        ; (window_w)
-        ; "submap"
-    )
-)
-
-(defwidget center []
-    (box
-        :halign "center"
-        :orientation "horizontal"
-        :space-evenly false
-        :spacing 6
-
-        (workspaces)
-    )
-)
-
-(defwidget right []
-    (box
-        :halign "end"
-        :orientation "horizontal"
-        :space-evenly false
-        :spacing 6
-
-        "注"
-        (audio)
-        "network"
-        (devicemonitor)
-        ""
-        (power)
-        ""
-    )
-)
-
-
-(deflisten window 
-    :initial "..." 
-    
-    "sh ~/.config/eww/scripts/get-window-title"
-)
-(defwidget window_w []
-    (box
-        :space-evenly false
-
-        (label 
-            :text "${window}"
-        )
-    )
-)
-
-
+(include "./statusbar/statusbar.yuck")

@@ -17,9 +17,9 @@
         )
         (box
             :space-evenly false
-            
+
             ""
-            "${round(EWW_TEMPS.K10TEMP_TCCD1, 0)}°C"
+            "${round(EWW_TEMPS.K10TEMP_TCTL, 0)}°C"
         )
     )
 )

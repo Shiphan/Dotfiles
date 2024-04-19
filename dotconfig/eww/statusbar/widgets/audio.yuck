@@ -1,0 +1,27 @@
+(deflisten volume
+    "bash ./statusbar/scripts/get-volume.sh"
+)
+
+(defwidget audio []
+    (button
+        :onclick "bash ./statusbar/scripts/open-pavucontrol.sh"
+
+        (stack
+            :selected {volume.muted ? 0 : 1}
+
+            ""
+            (box
+                :space-evenly false
+
+                (stack
+                    :selected {volume.level}
+
+                    ""
+                    ""
+                    ""
+                )
+                "${volume.value}"
+            )
+        )
+    )
+)
