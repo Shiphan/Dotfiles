@@ -12,7 +12,7 @@
 
         (stack
             :transition "slidedown"
-            :same-size true
+            :same-size false
             :selected {EWW_BATTERY == "" ? 0 : 1}
 
             ""
