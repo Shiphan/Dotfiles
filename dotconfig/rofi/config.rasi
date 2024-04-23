@@ -5,7 +5,7 @@ configuration {
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
-/*	show-icons: false;*/
+	show-icons: true;
 /*	terminal: "rofi-sensible-terminal";*/
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
@@ -153,4 +153,151 @@ configuration {
       directories-first: true;
       sorting-method:    "name";
   }
+}
+
+* {
+    text-normal: rgba(200, 200, 200, 0.9);
+    text-selected: rgba(50, 50, 50, 0.9);
+    back-normal: rgba(50, 50, 50, 0.6);
+    back-urgent: rgba(255, 224, 26, 0.6);
+    back-selected: rgba(200, 200, 200, 0.6);
+    back-active: rgba(66, 245, 108, 0.6);
+}
+element {
+    padding: 4px ;
+    spacing: 8px ;
+    border:  0;
+    cursor:  pointer;
+    border-radius: 6px;
+}
+element normal.normal {
+    background-color: var(back-normal);
+    text-color:       var(text-normal);
+}
+element normal.urgent {
+    background-color: var(back-urgent);
+    text-color:       var(text-normal);
+}
+element normal.active {
+    background-color: var(active-background);
+    text-color:       var(active-foreground);
+}
+element selected.normal {
+    background-color: var(back-selected);
+    text-color:       var(text-selected);
+}
+element selected.urgent {
+    background-color: var(back-urgent);
+    text-color:       var(text-selected);
+}
+element selected.active {
+    background-color: var(back-active);
+    text-color:       var(text-selected);
+}
+element alternate.normal {
+    background-color: var(back-normal);
+    text-color:       var(text-normal);
+}
+element alternate.urgent {
+    background-color: var(back-urgent);
+    text-color:       var(text-normal);
+}
+element alternate.active {
+    background-color: var(active-background);
+    text-color:       var(active-foreground);
+}
+element-text {
+    background-color: rgba ( 0, 0, 0, 0 % );
+    text-color:       inherit;
+    highlight:        inherit;
+    cursor:           inherit;
+}
+element-icon {
+    background-color: rgba ( 0, 0, 0, 0 % );
+    size:             1.0000em ;
+    text-color:       inherit;
+    cursor:           inherit;
+}
+window {
+    padding:          18px;
+    background-color: #1A1B267f;
+    border:           2;
+    border-radius: 12px;
+}
+mainbox {
+    padding: 0;
+    border:  0;
+}
+message {
+    padding:      1px ;
+    border-color: var(separatorcolor);
+    border:       2px dash 0px 0px ;
+}
+textbox {
+    text-color: var(foreground);
+}
+listview {
+    padding:      2px 0px 0px ;
+    scrollbar:    true;
+    border-color: var(separatorcolor);
+    spacing:      4px ;
+    fixed-height: 0;
+    border:       2px dash 0px 0px ;
+}
+scrollbar {
+    width:        4px ;
+    padding:      0;
+    handle-width: 8px ;
+    border:       0;
+    handle-color: var(normal-foreground);
+}
+sidebar {
+    border-color: var(separatorcolor);
+    border:       2px dash 0px 0px ;
+}
+button {
+    spacing:    0;
+    text-color: var(normal-foreground);
+    cursor:     pointer;
+}
+button selected {
+    background-color: var(selected-normal-background);
+    text-color:       var(selected-normal-foreground);
+}
+
+num-filtered-rows, num-rows {
+    text-color: grey;
+    expand:     false;
+}
+textbox-num-sep {
+    text-color: grey;
+    expand:     false;
+    str:        "/";
+}
+inputbar {
+    padding:    1px ;
+    spacing:    0px ;
+    text-color: var(normal-foreground);
+    children:   [ prompt,textbox-prompt-colon,entry, num-filtered-rows, textbox-num-sep, num-rows, case-indicator ];
+}
+case-indicator {
+    spacing:    0;
+    text-color: var(text-normal);
+}
+entry {
+    spacing:           0;
+    text-color:        var(text-normal);
+    placeholder-color: var(text-normal);
+    placeholder:       "Search...";
+    cursor:            text;
+}
+prompt {
+    spacing:    0;
+    text-color: var(text-normal);
+}
+textbox-prompt-colon {
+    margin:     0px 0.3000em 0.0000em 0.0000em ;
+    expand:     false;
+    str:        ":";
+    text-color: inherit;
 }

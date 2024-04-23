@@ -11,7 +11,7 @@
 (defwidget workspaces []
     (eventbox 
         :onscroll "bash ./statusbar/scripts/change-active-workspace {} ${current_workspace}"
-        :class "workspaces-widget"
+        :class "widget"
 
         (box 
             :space-evenly false

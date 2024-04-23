@@ -1,13 +1,11 @@
-profile=$(powerprofilesctl | grep "*" | awk '{print $2}')
+profile=$(powerprofilesctl get)
 
-if [ $profile = "performance:" ] ; then
-	level=3
-elif [ $profile = "balanced:" ] ; then
-	level=2
-elif [ $profile = "power-saver:" ] ; then
-	level=1
+if [ $profile = "performance" ] ; then
+	echo 3
+elif [ $profile = "balanced" ] ; then
+	echo 2
+elif [ $profile = "power-saver" ] ; then
+	echo 1
 else
-	level=0
+	echo 0
 fi
-
-echo $level

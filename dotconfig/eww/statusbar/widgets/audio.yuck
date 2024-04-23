@@ -1,12 +1,15 @@
+(include "./digitsdisplay.yuck")
 (deflisten volume
     "bash ./statusbar/scripts/get-volume.sh"
 )
 
 (defwidget audio []
     (button
+        :class "widget"
         :onclick "bash ./statusbar/scripts/open-pavucontrol.sh"
 
         (stack
+            :transition "slidedown"
             :selected {volume.muted ? 0 : 1}
 
             ""
@@ -20,7 +23,11 @@
                     ""
                     ""
                 )
-                "${volume.value}"
+                ;"${volume.value}"
+                (digitsdisplay
+                    :transition "slidedown"
+                    :value {volume.value}
+                )
             )
         )
     )

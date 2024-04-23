@@ -1,3 +1,7 @@
 (defwidget clock []
-    "${formattime(EWW_TIME, "%l:%M %p")}"
+    (label
+        :class "widget"
+        :unindent true
+        :text "${formattime(EWW_TIME, "%l:%M %p")}"
+    )
 )

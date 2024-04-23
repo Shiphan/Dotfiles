@@ -1,75 +1,75 @@
 * {
-  all: unset; //Unsets everything so you can style everything from scratch
-  font-size: large;
-  font-family: "Noto Sans", "Material Symbols Rounded", sans-serif;
+	all: unset;
+	font-size: large;
+	font-family: "Noto Sans", "Material Symbols Rounded", sans-serif;
 }
 
-//Global Styles
 .statusbar {
-  background-color: transparent;
-  color: rgba(200, 200, 200, 0.9);
-  padding: 10px 10px 0;
+	background-color: transparent;
+	color: rgba(200, 200, 200, 0.9);
+	margin: 10px 10px 0;
+
+	.widget {
+		background-color: rgba(50, 50, 50, 0.7);
+		padding: 2px 8px;
+		border-radius: 0.5em;
+
+		* {
+			background-color: transparent;
+			padding: 0;
+			margin: 0;
+		}
+		.current {
+			background-color: rgba(200, 200, 200, 0.6);
+			color: rgba(50, 50, 50, 0.9);
+			border-radius: 0.5em;
+		}
+	}
 }
 
-.statusbar>*>*>* {
-  background-color: rgba(50, 50, 50, 0.6);
-  padding: 2px 8px;
-  border-radius: 0.5em;
-}
 
-.statusbar>*>*>*>* {
-  background-color: transparent;
-  padding: 0;
-  margin: 0;
-}
-
-.current {
-  background-color: rgba(200, 200, 200, 0.6);
-  color: rgba(50, 50, 50, 0.9);
-  border-radius: 0.5em;
-}
 // Styles on classes (see eww.yuck for more information)
 
 /*
 .sidestuff slider {
-  all: unset;
-  color: #ffd5cd;
+	all: unset;
+	color: #ffd5cd;
 }
 
 .metric scale trough highlight {
-  all: unset;
-  background-color: #D35D6E;
-  color: #000000;
-  border-radius: 10px;
+	all: unset;
+	background-color: #D35D6E;
+	color: #000000;
+	border-radius: 10px;
 }
 .metric scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 3px;
-  min-width: 50px;
-  margin-left: 10px;
-  margin-right: 20px;
+	all: unset;
+	background-color: #4e4e4e;
+	border-radius: 50px;
+	min-height: 3px;
+	min-width: 50px;
+	margin-left: 10px;
+	margin-right: 20px;
 }
 .metric scale trough highlight {
-  all: unset;
-  background-color: #D35D6E;
-  color: #000000;
-  border-radius: 10px;
+	all: unset;
+	background-color: #D35D6E;
+	color: #000000;
+	border-radius: 10px;
 }
 .metric scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 3px;
-  min-width: 50px;
-  margin-left: 10px;
-  margin-right: 20px;
+	all: unset;
+	background-color: #4e4e4e;
+	border-radius: 50px;
+	min-height: 3px;
+	min-width: 50px;
+	margin-left: 10px;
+	margin-right: 20px;
 }
 .label-ram {
-  font-size: large;
+	font-size: large;
 }
 .workspaces button:hover {
-  color: #D35D6E;
+	color: #D35D6E;
 }
 */

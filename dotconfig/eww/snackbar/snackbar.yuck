@@ -1,0 +1,25 @@
+(defwindow snackbar
+	:monitor 0
+	:geometry (geometry
+		:x "0%"
+		:y "15%"
+		:width "20%"
+		:height "10%"
+		:anchor "bottom center"
+	)
+	:stacking "fg"
+	:exclusive false
+	:focusable false
+	:namespace "ewwSnackbar"
+
+	(stack
+		:transition "slidedown"
+		:selected snackbarIndex
+		:class "current"
+
+		"test"
+		"2:"
+	)
+)
+
+(defvar snackbarIndex 0)

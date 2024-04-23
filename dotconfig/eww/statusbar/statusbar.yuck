@@ -1,101 +1,98 @@
-(defwidget bar []
-    (centerbox
-        :orientation "horizontal"
+(defwindow statusbar
+	:monitor 0
+	:geometry (geometry
+		:x "0%"
+		:y "0%"
+		:width "100%"
+		:height "10px"
+		:anchor "top center"
+	)
+	:stacking "fg"
+	:exclusive true
+	:focusable false
+	:namespace "ewwStatusBar"
 
-        (left)
-        (center)
-        (right)
-    )
+	(centerbox
+		:orientation "horizontal"
+
+		(left)
+		(center)
+		(right)
+	)
 )
 
 (include "./statusbar/widgets/power.yuck")
 (include "./statusbar/widgets/clock.yuck")
 (include "./statusbar/widgets/windowinfo.yuck")
-(include "./statusbar/widgets/workspaces.yuck")
+(include "./statusbar/widgets/workspacesv2.yuck")
 (include "./statusbar/widgets/audio.yuck")
 (include "./statusbar/widgets/network.yuck")
 (include "./statusbar/widgets/devicemonitor.yuck")
+(include "./statusbar/widgets/powerprofile.yuck")
 
 (defwidget left []
-    (box
-        :halign "start"
-        :orientation "horizontal"
-        :space-evenly false
-        :spacing 6
+	(box
+		:halign "start"
+		:orientation "horizontal"
+		:space-evenly false
+		:spacing 6
 
-        (button
-            :onclick "bash ./scripts/open-hyprlock.sh"
-            ""
-        )
-        (power)
-        (clock)
-        (windowinfo)
-        ; (window_w)
-        ; "submap"
-    )
+		(button
+			:class "widget"
+			:onclick "bash ./statusbar/scripts/open-hyprlock.sh"
+
+			""
+		)
+		(power)
+		(clock)
+		(windowinfo)
+	)
 )
 
 (defwidget center []
-    (box
-        :halign "center"
-        :orientation "horizontal"
-        :space-evenly false
-        :spacing 60
+	(box
+		:halign "center"
+		:orientation "horizontal"
+		:space-evenly false
+		:spacing 60
 
-        (workspaces)
-    )
+		(workspaces)
+		(box
+
+		)
+	)
 )
 
 (defwidget right []
-    (box
-        :halign "end"
-        :orientation "horizontal"
-        :space-evenly false
-        :spacing 6
+	(box
+		:halign "end"
+		:orientation "horizontal"
+		:space-evenly false
+		:spacing 6
 
-        "en"
-        (audio)
-        (box
-            :space-evenly true
+		(label
+			:class "widget"
+			:text "en"
+		)
+		(audio)
+		(box
+			:class "widget"
+			:space-evenly true
 
-            (network)
-            ""
-        )
-        (devicemonitor)
-        (box
-            :space-evenly false
+			(network)
+			""
+		)
+		(devicemonitor)
+		(box
+			:class "widget"
+			:space-evenly false
 
-            ""
-            (stack
-                :selected power-profile
-
-                ""
-                ""
-                ""
-                ""
-            )
-        )
-        ""
-    )
-)
-
-(defpoll power-profile
-    :interval "2s"
-
-    `bash ./scripts/get-powerprofiles.sh`
-)
-
-(deflisten window 
-    :initial "..." 
-    
-    "sh ~/.config/eww/scripts/get-window-title"
-)
-(defwidget window_w []
-    (box
-        :space-evenly false
-
-        (label 
-            :text "${window}"
-        )
-    )
+			""
+			(powerprofile)
+		)
+		(label
+			:class "widget"
+			:text ""
+		)
+	)
 )

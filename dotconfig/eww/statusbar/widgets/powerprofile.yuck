@@ -1,0 +1,17 @@
+(defwidget powerprofile []
+    (stack
+        :transition "slidedown"
+        :selected power-profile
+
+        ""
+        ""
+        ""
+        ""
+    )
+)
+
+(defpoll power-profile
+    :interval "2s"
+
+    `bash ./statusbar/scripts/get-powerprofiles.sh`
+)

@@ -1,3 +1,4 @@
+(include "./digitsdisplay.yuck")
 (defpoll batterylevel
     :interval "2s"
 
@@ -5,26 +6,34 @@
 )
 
 (defwidget power []
-    (stack
-        :transition "slideright"
-        :same-size true
-        :selected {EWW_BATTERY == "" ? 0 : 1}
+    (box
+        :class "widget"
+        :space-evenly false
 
-        ""
-        (box
-            :space-evenly false
+        (stack
+            :transition "slidedown"
+            :same-size true
+            :selected {EWW_BATTERY == "" ? 0 : 1}
 
-            (stack
+            ""
+            (box
+                :space-evenly false
 
-                :transition "slidedown"
-                :same-size true
-                ;:selected {isbatterycharging ? 1 : 0}
-                :selected {EWW_BATTERY.BAT1.status == "Charging" ? 1 : 0}
+                (stack
 
-                (battery)
-                (charging)
+                    :transition "slidedown"
+                    :same-size true
+                    :selected {EWW_BATTERY.BAT1.status == "Charging" ? 1 : 0}
+
+                    (battery)
+                    (charging)
+                )
+                ;"${EWW_BATTERY.BAT1.capacity}"
+                (digitsdisplay
+                    :transition "slidedown"
+                    :value {EWW_BATTERY.BAT1.capacity}
+                )
             )
-            "${EWW_BATTERY.BAT1.capacity}"
         )
     )
 )
