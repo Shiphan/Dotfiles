@@ -48,14 +48,17 @@
 		color: inherit;
 	}
 	.volume {
+		.muted {
+			color: rgba(100, 100, 100, 0.9);
+		}
 		scale trough {
 			font-size: medium;
-			background-color: rgb(100, 100, 100);
+			background-color: rgba(100, 100, 100, 0.9);
 			border-radius: 1em;
 			min-height: 1em;
 			min-width: 20em;
 			highlight {
-				background-color: rgb(200, 200, 200);
+				background-color: rgba(200, 200, 200, 0.9);
 				border-radius: 1em;
 			}
 		}
@@ -78,12 +81,12 @@
 	.screenbrightness {
 		scale trough {
 			font-size: medium;
-			background-color: rgb(100, 100, 100);
+			background-color: rgba(100, 100, 100, 0.9);
 			border-radius: 1em;
 			min-height: 1em;
 			min-width: 20em;
 			highlight {
-				background-color: rgb(200, 200, 200);
+				background-color: rgba(200, 200, 200, 0.9);
 				border-radius: 1em;
 			}
 		}

@@ -52,7 +52,10 @@
 					:max 100
 					:value {volume.value}
 				)
-				{volume.muted ? "Muted" : volume.value}
+				(label
+					:class {volume.muted ? "muted" : ""}
+					:text {volume.value}
+				)
 			)
 			(stack
 				:selected {(playerInfo.title == "" && playerInfo.artist == "" && playerInfo.album == "" && playerInfo.status == "Stopped") ? 0 : 1}
