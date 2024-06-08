@@ -27,7 +27,7 @@
 		:onrightclick `snackdaemon close`
 
 		(stack
-			:transition "slidedown"
+			:transition "none"
 			:selected snackbarIndex
 
 			(box
@@ -128,6 +128,7 @@
 			(box
 				:class "powerprofiles"
 				:orientation "vertical"
+				:space-evenly false
 
 				(box
 					:orientation "horizontal"
