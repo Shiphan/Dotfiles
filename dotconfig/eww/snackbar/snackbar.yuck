@@ -54,42 +54,52 @@
 				)
 				{volume.muted ? "Muted" : volume.value}
 			)
-			(box
-				:class "player"
-				:orientation "horizontal"
-				:valign "center"
-				:space-evenly false
-				:spacing 16
-				
-				(image
-					:class "image"
-					:visible {playerInfo.artUrl != ""}
-					:path {substring(playerInfo.artUrl, 7, strlength(playerInfo.artUrl) - 7)}
-					:image-width 160
-					:image-height 60
-				)
-				;{substring(playerInfo.artUrl, 7, strlength(playerInfo.artUrl) - 7)}
+			(stack
+				:selected {(playerInfo.title == "" && playerInfo.artist == "" && playerInfo.album == "" && playerInfo.status == "Stopped") ? 0 : 1}
+
+				""
 				(box
-					:orientation "vertical"
+					:class "player"
+					:orientation "horizontal"
 					:valign "center"
 					:space-evenly false
-					:spacing 8
+					:spacing 16
+					
+					(image
+						:class "image"
+						:visible {playerInfo.artUrl != ""}
+						:path {substring(playerInfo.artUrl, 7, strlength(playerInfo.artUrl) - 7)}
+						:image-width 160
+						:image-height 60
+					)
+					;{substring(playerInfo.artUrl, 7, strlength(playerInfo.artUrl) - 7)}
+					(box
+						:orientation "vertical"
+						:valign "center"
+						:space-evenly false
+						:spacing 8
+						:width 600
 
-					(label
-						:class "title"
-						:xalign 0
-						:text {playerInfo.title}
+						(label
+							:class "title"
+							:xalign 0
+							:truncate true
+							:show-truncated true
+							:text {playerInfo.title}
+						)
+						(label
+							:class "artist"
+							:visible {playerInfo.artist != ""}
+							:xalign 0
+							:truncate true
+							:show-truncated true
+							:text {playerInfo.artist}
+						)
 					)
 					(label
-						:class "artist"
-						:visible {playerInfo.artist != ""}
-						:xalign 0
-						:text {playerInfo.artist}
+						:class "status"
+						:text {playerInfo.status == "Playing" ? "" : (playerInfo.status == "Paused" ? "" : (playerInfo.status == "Stopped" ? "" : ""))}
 					)
-				)
-				(label
-					:class "status"
-					:text {(playerInfo.status == "Playing") ? "" : ""}
 				)
 			)
 			(box
