@@ -1,7 +1,7 @@
 (defwidget powerprofile []
     (stack
         :transition "slidedown"
-        :selected power-profile
+        :selected {(power-profile == "performance") ? 3 : (power-profile == "balanced" ? 2 : (power-profile == "power-saver" ? 1 : 0))}
 
         ""
         ""
@@ -13,5 +13,5 @@
 (defpoll power-profile
     :interval "2s"
 
-    `bash ./statusbar/scripts/get-powerprofiles.sh`
+    `powerprofilesctl get`
 )

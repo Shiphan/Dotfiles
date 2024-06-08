@@ -28,7 +28,7 @@
                     (battery)
                     (charging)
                 )
-                ;"${EWW_BATTERY.BAT1.capacity}"
+                ;{EWW_BATTERY.BAT1.capacity}
                 (digitsdisplay
                     :transition "slidedown"
                     :value {EWW_BATTERY.BAT1.capacity}

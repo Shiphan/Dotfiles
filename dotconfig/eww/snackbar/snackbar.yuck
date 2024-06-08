@@ -1,9 +1,12 @@
 (include "./digitsdisplay.yuck")
 
-(defvar snackbarIndex 0)
 (deflisten playerInfo
 	`playerctl metadata --format "{\\\"title\\\":\\\"{{ title }}\\\", \\\"artist\\\":\\\"{{ artist }}\\\", \\\"album\\\":\\\"{{ album }}\\\", \\\"playerName\\\":\\\"{{ playerName }}\\\", \\\"status\\\":\\\"{{ status }}\\\", \\\"artUrl\\\":\\\"{{ mpris:artUrl }}\\\"}" --follow`
 )
+(defvar brightness 0)
+(defvar power-profile-var "")
+
+(defvar snackbarIndex 0)
 (defwindow snackbar
 	:monitor 0
 	:geometry (geometry
@@ -26,7 +29,6 @@
 		(stack
 			:transition "slidedown"
 			:selected snackbarIndex
-			:class "current"
 
 			(box
 				:class "volume"
@@ -46,9 +48,11 @@
 					""
 				)
 				(scale
+					:min 0
+					:max 100
 					:value {volume.value}
 				)
-				"${volume.muted ? "Muted" : volume.value}"
+				{volume.muted ? "Muted" : volume.value}
 			)
 			(box
 				:class "player"
@@ -59,12 +63,12 @@
 				
 				(image
 					:class "image"
-					:visible {"${playerInfo.artUrl}" != ""}
+					:visible {playerInfo.artUrl != ""}
 					:path {substring(playerInfo.artUrl, 7, strlength(playerInfo.artUrl) - 7)}
 					:image-width 160
 					:image-height 60
 				)
-				;"${substring(playerInfo.artUrl, 7, strlength(playerInfo.artUrl) - 7)}"
+				;{substring(playerInfo.artUrl, 7, strlength(playerInfo.artUrl) - 7)}
 				(box
 					:orientation "vertical"
 					:valign "center"
@@ -74,13 +78,13 @@
 					(label
 						:class "title"
 						:xalign 0
-						:text "${playerInfo.title}"
+						:text {playerInfo.title}
 					)
 					(label
 						:class "artist"
-						:visible {"${playerInfo.artist}" != ""}
+						:visible {playerInfo.artist != ""}
 						:xalign 0
-						:text "${playerInfo.artist}"
+						:text {playerInfo.artist}
 					)
 				)
 				(label
@@ -88,11 +92,62 @@
 					:text {(playerInfo.status == "Playing") ? "" : ""}
 				)
 			)
-			"playerInfo: ${playerInfo}"
-			"screenbrightness"
-			"powerprofiles"
-			"test"
-			"2:"
+			(box
+				:class "screenbrightness"
+				:orientation "horizontal"
+				:valign "center"
+				:space-evenly false
+				:spacing 16
+				
+				(stack
+					:same-size true
+					:halign "start"
+					:selected {brightness > 60 ? (brightness > 165 ? 2 : 1) : 0}
+
+					""
+					""
+					""
+				)
+				(scale
+					:min 0
+					:max 255
+					:value brightness
+				)
+				brightness
+			)
+			(box
+				:class "powerprofiles"
+				:orientation "vertical"
+
+				(box
+					:orientation "horizontal"
+					:valign "center"
+					:space-evenly true
+					:spacing 16
+
+					(label
+						:class {(power-profile-var == "performance" || power-profile-var == "balanced" || power-profile-var == "power-saver") ? "" : "current"}
+						:visible {!(power-profile-var == "performance" || power-profile-var == "balanced" || power-profile-var == "power-saver")}
+						:text ""
+					)
+					(label
+						:class {(power-profile-var == "power-saver") ? "current" : ""}
+						:text ""
+					)
+					(label
+						:class {(power-profile-var == "balanced") ? "current" : ""}
+						:text ""
+					)
+					(label
+						:class {(power-profile-var == "performance") ? "current" : ""}
+						:text ""
+					)
+				)
+				(label
+					:class "text"
+					:text power-profile-var
+				)
+			)
 		)
 	)
 )

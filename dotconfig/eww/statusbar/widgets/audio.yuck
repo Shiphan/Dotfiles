@@ -26,7 +26,7 @@
                     ""
                     ""
                 )
-                ;"${volume.value}"
+                ;{volume.value}
                 (digitsdisplay
                     :transition "slidedown"
                     :value {volume.value}

@@ -75,7 +75,32 @@
 			font-size: 1.6em;
 		}
 	}
-
+	.screenbrightness {
+		scale trough {
+			font-size: medium;
+			background-color: rgb(100, 100, 100);
+			border-radius: 1em;
+			min-height: 1em;
+			min-width: 20em;
+			highlight {
+				background-color: rgb(200, 200, 200);
+				border-radius: 1em;
+			}
+		}
+	}
+	.powerprofiles {
+		box>label {
+			padding: 0.4em;
+		}
+		.current {
+			background-color: rgba(200, 200, 200, 0.6);
+			color: rgba(50, 50, 50, 0.9);
+			border-radius: 0.5em;
+		}
+		.text {
+			font-size: x-large;
+		}
+	}
 }
 
 

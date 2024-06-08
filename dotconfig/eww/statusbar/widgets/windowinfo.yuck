@@ -7,7 +7,7 @@
 		:space-evenly true
 
 		(stack
-			:selected {"${windowinfojson.class ?: ""}" == "" ?
+			:selected {(windowinfojson.class ?: "") == "" ?
 				3 :
 				windowinfojson.fullscreen ?
 					0 :
@@ -24,6 +24,6 @@
 			:visible {windowinfojson.xwayland ?: false}
 			:text "X"
 		)
-		;"${windowinfojson.title}"
+		;{windowinfojson.title}
 	)
 )

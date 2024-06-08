@@ -7,7 +7,7 @@
 
         (label
             :visible {value >= 1000}
-            :text "${(value - (value % 1000)) / 1000}"
+            :text {(value - (value % 1000)) / 1000}
         )
         (digit
             :transition transition
