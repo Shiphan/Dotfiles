@@ -1,25 +1,99 @@
+(include "./digitsdisplay.yuck")
+
+(defvar snackbarIndex 0)
+(deflisten playerInfo
+	`playerctl metadata --format "{\\\"title\\\":\\\"{{ title }}\\\", \\\"artist\\\":\\\"{{ artist }}\\\", \\\"album\\\":\\\"{{ album }}\\\", \\\"playerName\\\":\\\"{{ playerName }}\\\", \\\"status\\\":\\\"{{ status }}\\\", \\\"artUrl\\\":\\\"{{ mpris:artUrl }}\\\"}" --follow`
+)
 (defwindow snackbar
 	:monitor 0
 	:geometry (geometry
 		:x "0%"
 		:y "15%"
-		:width "20%"
-		:height "10%"
+		:width "10px"
+		:height "10px"
 		:anchor "bottom center"
 	)
-	:stacking "fg"
+	:stacking "overlay"
 	:exclusive false
 	:focusable false
-	:namespace "ewwSnackbar"
+	:namespace "ewwSnackBar"
 
-	(stack
-		:transition "slidedown"
-		:selected snackbarIndex
-		:class "current"
+	(button
+		:onclick `snackdaemon close`
+		:onmiddleclick `snackdaemon close`
+		:onrightclick `snackdaemon close`
 
-		"test"
-		"2:"
+		(stack
+			:transition "slidedown"
+			:selected snackbarIndex
+			:class "current"
+
+			(box
+				:class "volume"
+				:orientation "horizontal"
+				:valign "center"
+				:space-evenly false
+				:spacing 16
+				
+				(stack
+					:same-size true
+					:halign "start"
+					:selected {volume.muted ? 0 : (volume.level + 1)}
+
+					""
+					""
+					""
+					""
+				)
+				(scale
+					:value {volume.value}
+				)
+				"${volume.muted ? "Muted" : volume.value}"
+			)
+			(box
+				:class "player"
+				:orientation "horizontal"
+				:valign "center"
+				:space-evenly false
+				:spacing 16
+				
+				(image
+					:class "image"
+					:visible {"${playerInfo.artUrl}" != ""}
+					:path {substring(playerInfo.artUrl, 7, strlength(playerInfo.artUrl) - 7)}
+					:image-width 160
+					:image-height 60
+				)
+				;"${substring(playerInfo.artUrl, 7, strlength(playerInfo.artUrl) - 7)}"
+				(box
+					:orientation "vertical"
+					:valign "center"
+					:space-evenly false
+					:spacing 8
+
+					(label
+						:class "title"
+						:xalign 0
+						:text "${playerInfo.title}"
+					)
+					(label
+						:class "artist"
+						:visible {"${playerInfo.artist}" != ""}
+						:xalign 0
+						:text "${playerInfo.artist}"
+					)
+				)
+				(label
+					:class "status"
+					:text {(playerInfo.status == "Playing") ? "" : ""}
+				)
+			)
+			"playerInfo: ${playerInfo}"
+			"screenbrightness"
+			"powerprofiles"
+			"test"
+			"2:"
+		)
 	)
 )
 
-(defvar snackbarIndex 0)

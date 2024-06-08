@@ -1,6 +1,7 @@
 (defwidget digitsdisplay [value transition]
     (box
         :spacing 0
+        :halign "center"
         :orientation "horizontal"
         :space-evenly false
 

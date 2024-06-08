@@ -24,5 +24,6 @@
 			:visible {windowinfojson.xwayland ?: false}
 			:text "X"
 		)
+		;"${windowinfojson.title}"
 	)
 )

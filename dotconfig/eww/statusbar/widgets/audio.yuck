@@ -9,6 +9,7 @@
         :onclick "bash ./statusbar/scripts/open-pavucontrol.sh"
 
         (stack
+            :halign "center"
             :transition "slidedown"
             :selected {volume.muted ? 0 : 1}
 
@@ -17,6 +18,8 @@
                 :space-evenly false
 
                 (stack
+                    :same-size true
+                    :halign "start"
                     :selected {volume.level}
 
                     ""

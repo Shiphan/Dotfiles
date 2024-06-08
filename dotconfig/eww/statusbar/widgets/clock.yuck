@@ -1,7 +1,21 @@
+(defvar showClockDetail false)
 (defwidget clock []
-    (label
+    (box
         :class "widget"
-        :unindent true
-        :text "${formattime(EWW_TIME, "%l:%M %p")}"
+
+        (eventbox
+            :onhover `eww update showClockDetail=true`
+            :onhoverlost `eww update showClockDetail=false`
+
+            (label
+                :unindent true
+                :text {formattime(EWW_TIME, showClockDetail ? "%l:%M:%S %p %Y/%m/%d-%a(%u)" : "%l:%M %p")}
+            )
+            ;(label
+            ;    :unindent true
+            ;    :text {formattime(EWW_TIME, "%l:%M %p")}
+            ;    :tooltip {formattime(EWW_TIME, "%Y/%m/%d-%a(%u) %l:%M:%S %p")}
+            ;)
+        )
     )
 )

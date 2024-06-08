@@ -12,7 +12,7 @@ else
 	isSpecial=true
 fi
 getinfo
-socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line ; do
+socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line ; do
 	if [[ $line == "workspace>>"* ]] ; then
 		spaceId=$(echo $line | sed "s/^workspace>>//")
 		getinfo

@@ -1,4 +1,4 @@
-device="wlp1s0"
+device="wlan0"
 
 printInfo(){
 	echo "{\"enabled\":$enabled,\"connected\":$connected,\"full\":$full,\"name\":$name}"

@@ -9,34 +9,35 @@
 )
 
 (defwidget network []
-        (box
-            :space-evenly false
-            :tooltip "${network.name} [${wifisignal.value}] ${round(EWW_NET.wlp1s0.NET_UP, 1)} / ${round(EWW_NET.wlp1s0.NET_DOWN, 1)}"
+    (box
+        :space-evenly false
+        :tooltip "${network.name} [${wifisignal.value}] ${round(EWW_NET.wlp1s0.NET_UP, 1)} / ${round(EWW_NET.wlp1s0.NET_DOWN, 1)}"
 
+        (stack
+            :same-size true
+            :selected {network.enabled ?
+                network.connected ?
+                    network.full ?
+                    3 :
+                    2 :
+                1 :
+                0
+            }
+
+            ""
+            ""
+            ""
             (stack
-                :selected {network.enabled ?
-                    network.connected ?
-                        network.full ?
-                        3 :
-                        2 :
-                    1 :
-                    0
-                }
+                :selected {wifisignal.level}
 
-                ""
-                ""
-                ""
-                (stack
-                    :selected {wifisignal.level}
-
-                    ""
-                    ""
-                    ""
-                    ""
-                    ""
-                    ""
-                )
+                ""
+                ""
+                ""
+                ""
+                ""
+                ""
             )
         )
+    )
 )
 

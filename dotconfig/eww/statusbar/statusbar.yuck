@@ -3,7 +3,7 @@
 	:geometry (geometry
 		:x "0%"
 		:y "0%"
-		:width "100%"
+		:width "127.65957446808%"
 		:height "10px"
 		:anchor "top center"
 	)
@@ -27,6 +27,7 @@
 (include "./statusbar/widgets/workspacesv2.yuck")
 (include "./statusbar/widgets/audio.yuck")
 (include "./statusbar/widgets/network.yuck")
+(include "./statusbar/widgets/bluetooth.yuck")
 (include "./statusbar/widgets/devicemonitor.yuck")
 (include "./statusbar/widgets/powerprofile.yuck")
 
@@ -57,9 +58,6 @@
 		:spacing 60
 
 		(workspaces)
-		(box
-
-		)
 	)
 )
 
@@ -70,29 +68,34 @@
 		:space-evenly false
 		:spacing 6
 
-		(label
-			:class "widget"
-			:text "en"
-		)
+		;(label
+		;	:class "widget"
+		;	:text "en"
+		;)
 		(audio)
 		(box
 			:class "widget"
 			:space-evenly true
 
 			(network)
-			""
+			;(bluetooth)
+			(button
+				:onclick "bash ./statusbar/scripts/open-blueman-manager.sh"
+				
+				""
+			)
 		)
 		(devicemonitor)
 		(box
 			:class "widget"
 			:space-evenly false
 
-			""
+			;""
 			(powerprofile)
 		)
-		(label
-			:class "widget"
-			:text ""
-		)
+		;(label
+		;	:class "widget"
+		;	:text ""
+		;)
 	)
 )
