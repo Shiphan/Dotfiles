@@ -1,3 +1,7 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"
+
 # system config directory
 configDir="$HOME/.config"
 # new config directory
