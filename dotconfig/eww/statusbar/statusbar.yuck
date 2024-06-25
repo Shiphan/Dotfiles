@@ -3,6 +3,7 @@
 	:geometry (geometry
 		:x "0%"
 		:y "0%"
+		;:width "100%"
 		:width "127.65957446808%"
 		:height "10px"
 		:anchor "top center"
@@ -24,7 +25,7 @@
 (include "./statusbar/widgets/power.yuck")
 (include "./statusbar/widgets/clock.yuck")
 (include "./statusbar/widgets/windowinfo.yuck")
-(include "./statusbar/widgets/workspacesv2.yuck")
+(include "./statusbar/widgets/workspaces.yuck")
 (include "./statusbar/widgets/audio.yuck")
 (include "./statusbar/widgets/network.yuck")
 (include "./statusbar/widgets/bluetooth.yuck")

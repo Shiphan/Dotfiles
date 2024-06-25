@@ -1,38 +1,41 @@
 (deflisten workspaces
-    :initial "[]" 
-
-    "bash ./statusbar/scripts/get-workspaces"
+    "bash ./statusbar/scripts/get-workspaces.sh"
 )
-(deflisten current_workspace
-    :initial "1"
 
-    "bash ./statusbar/scripts/get-active-workspace"
-)
 (defwidget workspaces []
-    (eventbox 
-        :onscroll "bash ./statusbar/scripts/change-active-workspace {} ${current_workspace}"
-        :class "widget"
+    (eventbox
+        :onscroll "bash ./statusbar/scripts/change-active-workspace.sh {} ${workspaces.active.spaceId}"
 
         (box 
+            :class "widget"
             :space-evenly false
             :spacing 8
 
-            (label 
-                :text "${workspaces}${current_workspace}" 
-                :visible false
-            )
-            (for workspace in workspaces
-                (eventbox
-                    :visible {workspace.windows > 0 || workspace.id == current_workspace}
-                    :onclick "hyprctl dispatch workspace ${workspace.id}"
+            (box
+                :space-evenly false
+                :spacing 8
+                :visible {workspaces.specialInfo != "[]"}
 
-                    (box 
-                        :space-evenly false
-                        :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+                (for specialspace in {workspaces.specialInfo}
+                    (label
+                        :unindent false
+                        :class {workspaces.active.specialId == specialspace.id && workspaces.active.onSpecial ? "current" : ""}
+                        :text {workspaces.active.specialId == specialspace.id && workspaces.active.onSpecial ? " > ${specialspace.name} < " : specialspace.name}
+                    )
+                )
+            )
+            (box
+                :space-evenly false
+                :spacing 8
+
+                (for workspace in {workspaces.spaceInfo}
+                    (eventbox
+                        :onclick "hyprctl dispatch workspace ${workspace.id}"
 
                         (label
                             :unindent false
-                            :text {workspace.id == current_workspace ? " > ${workspace.id} < " : "${workspace.id}"}
+                            :class {workspaces.active.spaceId == workspace.id ? "current" : ""}
+                            :text {workspaces.active.spaceId == workspace.id ? " > ${workspace.name} < " : workspace.name}
                         )
                     )
                 )
