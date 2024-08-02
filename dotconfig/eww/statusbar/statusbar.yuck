@@ -41,9 +41,9 @@
 
 		(button
 			:class "widget"
-			:onclick "bash ./statusbar/scripts/open-hyprlock.sh"
+			:onclick `eww update powermenu-mode="normal"; eww open powermenu`
 
-			""
+			""
 		)
 		(power)
 		(clock)
@@ -72,6 +72,9 @@
 		;(label
 		;	:class "widget"
 		;	:text "en"
+		;)
+		;(systray
+		;	:class "widget"
 		;)
 		(audio)
 		(box

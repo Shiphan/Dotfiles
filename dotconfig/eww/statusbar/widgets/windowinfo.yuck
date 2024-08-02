@@ -23,6 +23,7 @@
 		(label
 			:visible {windowinfojson.xwayland ?: false}
 			:text "X"
+			;:text " "
 		)
 		;{windowinfojson.title}
 	)
