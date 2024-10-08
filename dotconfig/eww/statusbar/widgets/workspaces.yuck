@@ -20,7 +20,7 @@
                     (label
                         :unindent false
                         :class {workspaces.active.specialId == specialspace.id && workspaces.active.onSpecial ? "current" : ""}
-                        :text {workspaces.active.specialId == specialspace.id && workspaces.active.onSpecial ? " > ${specialspace.name} < " : specialspace.name}
+                        :text {workspaces.active.specialId == specialspace.id && workspaces.active.onSpecial ? " > ${substring(specialspace.name, 8, strlength(specialspace.name) - 8)} < " : substring(specialspace.name, 8, strlength(specialspace.name) - 8)}
                     )
                 )
             )

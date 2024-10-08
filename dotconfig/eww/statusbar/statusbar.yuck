@@ -80,14 +80,14 @@
 		(box
 			:class "widget"
 			:space-evenly true
+			;:space-evenly false
+			:spacing 2
 
+			;(label :text "(")
+			;(label :text bluetooth-info)
+			;(label :text ")")
 			(network)
-			;(bluetooth)
-			(button
-				:onclick "bash ./statusbar/scripts/open-blueman-manager.sh"
-				
-				""
-			)
+			(bluetooth)
 		)
 		(devicemonitor)
 		(box

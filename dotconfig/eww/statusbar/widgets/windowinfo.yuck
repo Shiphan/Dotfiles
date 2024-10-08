@@ -5,11 +5,12 @@
 	(box
 		:class "widget"
 		:space-evenly true
+		:spacing 2
 
 		(stack
 			:selected {(windowinfojson.class ?: "") == "" ?
 				3 :
-				windowinfojson.fullscreen ?
+				windowinfojson.fullscreen == 1 ?
 					0 :
 					windowinfojson.floating ?
 						1 :

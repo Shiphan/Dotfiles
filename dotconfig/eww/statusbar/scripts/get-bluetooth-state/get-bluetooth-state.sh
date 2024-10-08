@@ -2,8 +2,6 @@ printinfo(){
 	echo "{\"enabled\":$enabled,\"searching\":$searching,\"connected\":$connected}"
 }
 
-while true; do
-
 enabled=$(bluetoothctl show | while read -r line ; do
 	if [[ $line =~ Powered:\ no ]] ; then
 		echo false
@@ -26,11 +24,7 @@ connected=$(if [[ "$(bluetoothctl devices Connected)" = "" ]]; then echo false; 
 
 printinfo
 
-sleep 2
-
-done
-
-: 'bluetoothctl | while read -r line ; do
+bluetoothctl | while read -r line ; do
 	update=true
 
 	if [[ $line =~ Controller\ .{17}\ Powered:\ no ]] ; then
@@ -54,6 +48,8 @@ done
 	if $update ; then
 		printinfo
 	fi
-done'
+done &
+
+sleep infinity
 
 # stty icrnl icanon echo

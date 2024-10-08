@@ -6,21 +6,59 @@
 
         (box
             :space-evenly false
+            :spacing 2
 
             ""
-            "${round(EWW_CPU.avg, 0)}%"
+            (value-graph
+                :value {EWW_CPU.avg}
+                :min 0
+                :max 100
+                :text "${round(EWW_CPU.avg, 0)}%"
+            )
         )
         (box
             :space-evenly false
+            :spacing 2
 
             ""
-            "${round(EWW_RAM.used_mem_perc, 0)}%"
+            (value-graph
+                :value {EWW_RAM.used_mem_perc}
+                :min 0
+                :max 100
+                :text "${round(EWW_RAM.used_mem_perc, 0)}%"
+            )
         )
         (box
             :space-evenly false
+            :spacing 2
 
             ""
-            "${round(EWW_TEMPS.K10TEMP_TCTL, 0)}°C"
+            (value-graph
+                :value {EWW_TEMPS.K10TEMP_TCTL}
+                :min 0
+                :max 110
+                :text "${round(EWW_TEMPS.K10TEMP_TCTL, 0)}°"
+            )
+        )
+    )
+)
+
+(defwidget value-graph [value min max text]
+    (overlay
+        (graph
+            :value value
+            :thickness 2
+            :time-range "15s"
+            :min min
+            :max max
+            :dynamic false
+            :line-style "round"
+            :width 35
+            :style "color: rgba(200, 200, 200, 0.6);"
+        )
+        (label
+            :style "font-size: 0.8em;"
+            :text text
         )
     )
 )

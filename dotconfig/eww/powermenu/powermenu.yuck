@@ -19,7 +19,7 @@
 		:orientation "vertical"
 		:halign "center"
 		:space-evenly false
-		:spacing 36
+		:spacing 32
 
 		(label
 			:class "title"
@@ -28,8 +28,14 @@
 		(box
 			:orientation "horizontal"
 			:space-evenly false
-			:spacing 24
+			:spacing 20
 
+			(powermenu-button
+				:mode-name "lock"
+				:icon ""
+				:display-name "Lock"
+				:onclick `pidof hyprlock || hyprlock`
+			)
 			(powermenu-button
 				:mode-name "suspend"
 				:icon ""
@@ -62,14 +68,14 @@
 			:halign "center"
 
 			(box
-				:class "outlined"
+				:class "cancel"
 				:orientation "horizontal"
 				:space-evenly false
 				:spacing 6
 
 
 				(label
-					:class "xx-large"
+					:class "icon"
 					:text ""
 				)
 				"Cancel"
