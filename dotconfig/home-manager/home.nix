@@ -16,23 +16,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-
     kitty
     firefox
     gnome.nautilus
@@ -101,6 +84,24 @@
 	mainProgram = "wdi";
       };
     }
+
+    rust-analyzer
+    gopls
+    jdt-language-server
+    kotlin-language-server
+    pyright
+    postgres-lsp
+    bash-language-server
+    nil
+    nixd
+    # hyprls
+    # jsonls
+    # html
+    # cssls
+    htmx-lsp
+    templ
+    svelte-language-server
+    lua-language-server
   ];
 
   # FIXME: theme prefer-dark
@@ -145,12 +146,51 @@
     };
     bash = {
       enable = true;
+      enableCompletion = true;
+      shellAliases = {
+        "ls" = "ls --color=auto";
+        "grep" = "grep --color=auto";
+        "ll" = "ls -lh";
+        "lla" = "ls -lha";
+      };
+      initExtra = ''
+        PS1=' \[\e[0;38;2;180;200;220m\]\[\e[1;38;2;64;64;64;48;2;180;200;220m\]\u\[\e[0;38;2;64;64;64;48;2;180;200;220m\] @\h \[\e[0;38;2;20;44;68;48;2;180;200;220m\]\[\e[1;38;2;180;200;220;48;2;20;44;68m\]\W $(if [ -d .git ]; then echo " "; else echo "󰉋 "; fi)\[\e[0;38;2;20;44;68;48;2;180;200;220m\]\[\e[1;38;2;64;64;64;48;2;180;200;220m\] \$\[\e[0;38;2;180;200;220m\]\[\e[0m\] '
+      '';
+    };
+    readline = {
+      enable = true;
+      includeSystemConfig = true;
+      variables = {
+        "completion-ignore-case" = true;
+      };
+      bindings = {
+        "\\e[A" = "history-search-backward";
+        "\\e[B" = "history-search-forward";
+      };
     };
     zsh = {
       enable = true;
-    };
-    input = {
-      enable = true;
+      defaultKeymap = "viins";
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+      plugins = [
+        {
+          name = "zsh-vi-mode";
+          src = pkgs.zsh-vi-mode;
+          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+        }
+      ];
+      shellAliases = {
+        "ls" = "ls --color=auto";
+        "grep" = "grep --color=auto";
+        "ll" = "ls -lh";
+        "lla" = "ls -lha";
+      };
+      initExtra = ''
+        setopt PROMPT_SUBST
+        PROMPT=' %F{#b4c8dc}%B%F{#404040}%K{#b4c8dc}%n%b @%M %F{#142c44}%B%F{#b4c8dc}%K{#142c44}%1~%b $(if [ -d .git ]; then echo " "; else echo "󰉋 "; fi)%F{#142c44}%K{#b4c8dc} %B%F{#404040}%K{#b4c8dc}%(!.#.$)%b%F{#b4c8dc}%k%f '
+      '';
     };
   };
 
