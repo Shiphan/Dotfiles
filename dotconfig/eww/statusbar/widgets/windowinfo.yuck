@@ -7,24 +7,20 @@
 		:space-evenly true
 		:spacing 2
 
+		(label
+			:text {(windowinfojson.xwayland ?: false) ? " " : " "}
+		)
 		(stack
-			:selected {(windowinfojson.class ?: "") == "" ?
-				3 :
-				windowinfojson.fullscreen == 1 ?
-					0 :
-					windowinfojson.floating ?
-						1 :
-						2}
+			:selected {(windowinfojson.class ?: "") == "" ? 3 :
+				windowinfojson.fullscreen == 1 ? 0 :
+				windowinfojson.floating ? 1 :
+				2
+			}
 
 			""
 			""
 			""
 			""
-		)
-		(label
-			:visible {windowinfojson.xwayland ?: false}
-			:text "X"
-			;:text " "
 		)
 		;{windowinfojson.title}
 	)
