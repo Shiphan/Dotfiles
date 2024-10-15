@@ -8,18 +8,32 @@
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16*1024;
+    }
+  ];
+
+  boot = {
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        useOSProber = true;
+        default = "saved";
+	# theme = "${pkgs.kdePackages.breeze-grub}/grub/themes/breeze";
+      };
     };
-    grub = {
-      enable = true;
-      efiSupport = true;
-      device = "nodev";
-      useOSProber = true;
-      default = "saved";
-    };
+    resumeDevice = "/dev/nvme0n1p6";
+    kernelParams = [
+      "resume_offset=14116864"
+    ];
   };
 
   networking = {
@@ -54,19 +68,7 @@
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    inputMethod = {
-      # enabled = "ibus";
-      # ibus.engines = with pkgs.ibus-engines; [
-      #   rime
-      # ];
-      # enabled = "fcitx5";
-      # fcitx5.addons = with pkgs; [
-      #   fcitx5-material-color
-      #   fcitx5-chewing
-      # ];
-    };
   };
-  # services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
   console = {
     keyMap = "us";
@@ -78,9 +80,19 @@
   };
 
   services = {
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
+    fwupd.enable = true;
+    displayManager = {
+      # defaultSession = "hyprland";
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+        package = pkgs.kdePackages.sddm;
+        theme = "sddm-astronaut-theme";
+        extraPackages = with pkgs; [
+          kdePackages.qtsvg
+          kdePackages.qt5compat
+        ];
+      };
     };
     # desktopManager.plasma6.enable = true;
 
@@ -97,6 +109,7 @@
     libinput.enable = true;
     # Enable the OpenSSH daemon.
     openssh.enable = true;
+    power-profiles-daemon.enable = true;
   };
 
   hardware = {
@@ -117,6 +130,13 @@
     };
   };
 
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=yes
+    AllowHibernation=yes
+    AllowSuspendThenHibernate=yes
+    HibernateDelaySec=30min
+  '';
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."shiphan" = {
     isNormalUser = true;
@@ -124,34 +144,53 @@
     # packages = with pkgs; [ ];
   };
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # nix things
     home-manager
     nix-init
 
+    # sddm themes
+    sddm-astronaut
+
+    # dev tools
     vim
     git
 
+    # langs
     gcc
+    rustc
+    cargo
     go
+    openjdk
     lua
+    python3
 
+    # cli tools
+    tree
     jq
     socat
+    ffmpeg
     wget
 
+    # hyprland things
     xdg-desktop-portal-hyprland
     wl-clipboard
     pulseaudio
+    kitty
 
+    # cli not tools
     sl
     cmatrix
+    figlet
     fastfetch
-
-    btop
-    radeontop
-    nvtop
   ];
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -166,6 +205,13 @@
     neovim = {
       enable = true;
       defaultEditor = true;
+    };
+
+    steam = {
+      enable = true;
+      # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
     };
 
     # Some programs need SUID wrappers, can be configured further or are
