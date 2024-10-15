@@ -48,6 +48,16 @@
 		(power)
 		(clock)
 		(windowinfo)
+		(box
+			:class "widget"
+
+			(systray
+				:orientation "horizontal"
+				:spacing 6
+				:prepend-new false
+				:icon-size 18
+			)
+		)
 	)
 )
 
