@@ -55,7 +55,7 @@
 				:orientation "horizontal"
 				:spacing 6
 				:prepend-new false
-				:icon-size 18
+				:icon-size 16
 			)
 		)
 	)
@@ -79,13 +79,6 @@
 		:space-evenly false
 		:spacing 6
 
-		;(label
-		;	:class "widget"
-		;	:text "en"
-		;)
-		;(systray
-		;	:class "widget"
-		;)
 		(audio)
 		(box
 			:class "widget"
@@ -93,9 +86,6 @@
 			;:space-evenly false
 			:spacing 2
 
-			;(label :text "(")
-			;(label :text bluetooth-info)
-			;(label :text ")")
 			(network)
 			(bluetooth)
 		)
