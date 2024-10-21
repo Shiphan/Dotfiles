@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 value=$(nmcli --terse --get-values IN-USE,SIGNAL device wifi list | grep "\*" | sed 's/*://')
 
 if [[ $value -gt 85 ]] ; then

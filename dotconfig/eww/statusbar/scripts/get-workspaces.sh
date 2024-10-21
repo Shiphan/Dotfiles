@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 getinfo(){
 	workspaces=$(hyprctl workspaces -j | jq -c 'sort_by(.id) | [ .[] | {"id","name","windows"} ]')
 	echo "{\"active\":{\"spaceId\":$spaceId, \"specialId\":$specialId, \"onSpecial\":$isSpecial}, \"spaceInfo\":$(echo $workspaces | jq -c '[ .[] | select(.id>0) ]'), \"specialInfo\":$(echo $workspaces | jq -c '[ .[] | select(.id<0) ]')}"

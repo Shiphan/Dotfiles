@@ -1,6 +1,8 @@
+#!/usr/bin/env bash
+
 getinfo(){
 	info=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
-	value=$(echo $info | awk '{print $2 * 100}')
+	value=$(echo "$info" | awk '{print $2 * 100}')
 	if [[ $info =~ \[MUTED\] ]] ; then
 		muted=true
 	else

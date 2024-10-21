@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 device="wlan0"
 
 printInfo(){
@@ -25,9 +27,9 @@ printInfo
 
 nmcli monitor | while read -r line ; do
 	update=true
-	if [[ $line =~ "${device}: unavailable" ]] ; then
+	if [[ $line =~ ${device}:\ unavailable ]] ; then
 		enabled=false
-	elif [[ $line =~ "${device}: " ]] && ! $enabled; then
+	elif [[ $line =~ ${device}:\  ]] && ! $enabled; then
 		enabled=true
 	elif [[ $line =~ "Connectivity is now 'full'" ]] ; then
 		full=true
@@ -38,7 +40,7 @@ nmcli monitor | while read -r line ; do
 	elif [[ $line =~ "Networkmanager is now in the 'disconnected' state" ]] ; then
 		connected=false
 	elif [[ $line =~ " is now the primary connection" ]] ; then
-		name=$(echo $line | sed -e "s/ is now the primary connection//" -e "s/^'/\"/" -e "s/'$/\"/")
+		name=$(echo "$line" | sed -e "s/ is now the primary connection//" -e "s/^'/\"/" -e "s/'$/\"/")
 	else
 		update=false
 	fi

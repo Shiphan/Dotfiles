@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 value=$(cat /sys/class/power_supply/BAT1/capacity)
 
 if [[ $value -gt 95 ]] ; then
