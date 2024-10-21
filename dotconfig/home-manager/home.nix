@@ -1,4 +1,6 @@
-{ config, lib, pkgs, ... }: rec {
+{ config, lib, pkgs, ... }@args:
+
+{
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "shiphan";
@@ -27,12 +29,13 @@
       fcitx5-lua
       # fcitx5-tokyonight
       fcitx5-nord
-      (callPackage ./fcitx5-mcbopomofo.nix {})
+      (callPackage ./fcitx5-mcbopomofo.nix { })
       # fcitx5-mcbopomofo
     ];
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "google-chrome"
     "discord"
     "davinci-resolve"
   ];
@@ -42,6 +45,25 @@
   home.packages = with pkgs; [
     kitty
     firefox
+    /*
+    firefox-beta
+    firefox-beta-unwrapped
+    firefox-devedition
+    firefox-devedition-unwrapped
+    (runCommand "firefox-beta" { } ''
+      mkdir -p $out/bin
+      ln -s ${pkgs.firefox-beta}/bin/firefox-beta $out/bin/firefox-beta
+      ln -s ${pkgs.firefox-beta}/share $out/share
+    '')
+    */
+    (runCommand "firefox-devedition" { } ''
+      mkdir -p $out/bin
+      ln -s ${pkgs.firefox-devedition}/bin/firefox-devedition $out/bin/firefox-devedition
+      ln -s ${pkgs.firefox-devedition}/share $out/share
+    '')
+    args.firefox.packages.${pkgs.system}.firefox-nightly-bin
+    chromium
+    google-chrome
     nautilus
     loupe
     totem
@@ -60,7 +82,7 @@
     swtpm
 
     discord
-    davinci-resolve
+    # davinci-resolve
 
     yt-dlp
     nodejs
@@ -69,65 +91,28 @@
     radeontop
     # nvtop
 
+    grim
+    slurp
+    cliphist
+    libnotify
+    dunst
     eww
     playerctl
     brightnessctl
     rofi-wayland
     pavucontrol
     networkmanagerapplet
-    blueman
 
     hyprlock
     hypridle
     hyprpaper
-    (buildGoModule rec {
-      pname = "snackdaemon";
-      version = "0.3.0";
-
-      src = fetchFromGitHub {
-        owner = "Shiphan";
-        repo = "snackdaemon";
-        rev = "v${version}";
-        hash = "sha256-TNJ+N19HM/RtLSsjIoq+YAyFlnHrNS3ec1PkgDBMPO8=";
-      };
-
-      vendorHash = null;
-
-      ldflags = [ "-s" "-w" ];
-
-      meta = with lib; {
-        description = "Daemon for snackbar";
-        homepage = "https://github.com/Shiphan/snackdaemon";
-        license = licenses.mit;
-        maintainers = with maintainers; [ ];
-        mainProgram = "snackdaemon";
-      };
-    })
-    (rustPlatform.buildRustPackage rec {
-      pname = "wdi";
-      version = "unstable-2024-07-24";
-
-      src = fetchFromGitHub {
-        owner = "shiphan";
-        repo = "wdi";
-        rev = "87d1f5e40200bf63ce6c4722816db42d614e6f6a";
-        hash = "sha256-lOK2r03phvJiiXw4UM50w7ps8aEr4qlirB60DZ7P75o=";
-      };
-
-      cargoHash = "sha256-Vk3ihpdtoh9rj7Bd5LYilSSJkd/fNSm3vfKVUUpgJ0Y=";
-
-      meta = with lib; {
-        description = "Walk through Directory with Interface";
-        homepage = "https://github.com/shiphan/wdi.git";
-        license = licenses.mit;
-        maintainers = with maintainers; [ ];
-        mainProgram = "wdi";
-      };
-    })
+    (callPackage ./snackdaemon.nix { })
+    (callPackage ./wdi.nix { })
 
     vimPlugins.lazy-nvim
 
     # lsp
+    clang-tools
     rust-analyzer
     gopls
     jdt-language-server
@@ -147,38 +132,74 @@
     lua-language-server
   ];
 
-  # FIXME: windows 11 vm not work
   xdg.desktopEntries = {
-    "windows_11" = {
-      name = "Windows 11";
-      # icon = "";
-      terminal = true;
-      exec = "${pkgs.writeShellScriptBin "qemu-windows-11" ''
-        cp -n ${pkgs.OVMF.fd}/FV/OVMF_CODE.fd ${home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd
-        chmod +w ${home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd
+    /*
+    "firefox-nightly" = {
+      name = "Firefox Nightly";
+      exec = "${args.firefox.packages.${pkgs.system}.firefox-nightly-bin.unwrapped}/bin/firefox-nightly --name firefox-nightly %U";
+      # icon = "firefox-nightly";
+      icon = "${args.firefox.packages.${pkgs.system}.firefox-nightly-bin}/share/icons/hicolor/128x128/apps/firefox-nightly.png";
+      # icon = "${args.firefox.packages.${pkgs.system}.firefox-nightly-bin.unwrapped}/share";
+      categories = [ "Network" "WebBrowser" ];
+      genericName = "Web Browser";
+      type = "Application";
+      mimeType = [ "text/html" "text/xml" "application/xhtml+xml" "application/vnd.mozilla.xul+xml" "x-scheme-handler/http" "x-scheme-handler/https" ];
+      startupNotify = true;
 
-        swtpm socket --tpm2 --tpmstate dir=${home.homeDirectory}/.local/share/qemu-img/tpm --ctrl type=unixio,path=${home.homeDirectory}/.local/share/qemu-img/tpm/swtpm-sock &
+      actions = {
+        "new-private-window" = {
+          name = "New Private Window";
+          exec = "${args.firefox.packages.${pkgs.system}.firefox-nightly-bin.unwrapped}/bin/firefox-nightly --private-window %U";
+        };
+        "new-window" = {
+          name= "New Window";
+          exec = "${args.firefox.packages.${pkgs.system}.firefox-nightly-bin.unwrapped}/bin/firefox-nightly --new-window %U";
+        };
+        "profile-manager-window" = {
+          name= "Profile Manager";
+          exec= "${args.firefox.packages.${pkgs.system}.firefox-nightly-bin.unwrapped}/bin/firefox-nightly --ProfileManager";
+        };
+      };
+    };
+    */
+
+    # FIXME: windows 11 vm not work
+    "windows-11" = {
+      name = "Windows 11";
+      icon = "qemu";
+      # icon = "${pkgs.qemu}/share/icons/hicolor/scalable/apps/qemu.svg";
+      terminal = true;
+      exec = "${pkgs.writeShellScript "qemu-windows-11" ''
+        # cp -n ${pkgs.OVMF.fd}/FV/OVMF_CODE.fd ${config.home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd
+        # chmod +w ${config.home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd
+
+        swtpm socket --tpm2 --tpmstate dir=${config.home.homeDirectory}/.local/share/qemu-img/tpm --ctrl type=unixio,path=${config.home.homeDirectory}/.local/share/qemu-img/tpm/swtpm-sock &
 
         qemu-system-x86_64 \
           -monitor stdio \
           -enable-kvm \
           -cpu host \
+          -vga qxl \
           -m 12G \
           -machine q35 \
           -device amd-iommu \
           -bios ${pkgs.OVMF.fd}/FV/OVMF.fd \
-          -chardev socket,id=chrtpm,path=${home.homeDirectory}/.local/share/qemu-img/tpm/swtpm-sock \
+          -chardev socket,id=chrtpm,path=${config.home.homeDirectory}/.local/share/qemu-img/tpm/swtpm-sock \
           -tpmdev emulator,id=tpm0,chardev=chrtpm \
           -device tpm-tis,tpmdev=tpm0 \
           -boot d \
-          -cdrom ${home.homeDirectory}/Downloads/archlinux-2024.10.01-x86_64.iso \
-          ${home.homeDirectory}/.local/share/qemu-img/image_file_1
+          -cdrom ${config.home.homeDirectory}/Downloads/Win11_24H2_Chinese_Traditional_x64.iso \
+          ${config.home.homeDirectory}/.local/share/qemu-img/image_file_1
 
+          # -boot menu=on \
+          # -cdrom ${config.home.homeDirectory}/Downloads/Win11_24H2_Chinese_Traditional_x64.iso \
+          # -cdrom ${config.home.homeDirectory}/Downloads/archlinux-2024.10.01-x86_64.iso \
           # -drive if=pflash,format=raw,readonly=on,file=/nix/store/18fwgvs3k4mkp8i8j53clr83787dfqwp-OVMF-202408-fd/FV/OVMF_CODE.fd \
-          # -drive if=pflash,format=raw,file=${home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd \
+          # -drive if=pflash,format=raw,file=${config.home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd \
 
-          # -drive file=${home.homeDirectory}/.local/share/qemu-img/image_file_1,format=qcow2
-      ''}/bin/qemu-windows-11";
+          # -cdrom ${config.home.homeDirectory}/Downloads/archlinux-2024.10.01-x86_64.iso \
+          # -drive file=${config.home.homeDirectory}/.local/share/qemu-img/image_file_1,format=qcow2
+      ''}";
     };
   };
 
@@ -218,6 +239,10 @@
         adwaita-qt6
       ];
     };
+  };
+
+  services = {
+    blueman-applet.enable = true;
   };
 
   programs = {
@@ -310,7 +335,38 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+    /*
+    "firefox-devedition-desktop-entry" = {
+      source = "${pkgs.firefox-devedition}/share";
+      target = ".local/share";
+      recursive = true;
+    };
+    "firefox-beta-desktop-entry" = {
+      source = "${pkgs.firefox-beta}";
+      target = ".nix-profile/share";
+      recursive = true;
+    };
+    */
   };
+    /*
+  } // (
+  let
+    recursive = a: lib.concatMapAttrs (_: value:
+      if (builtins.readFileType value.source) == "directory" then
+        recursive (builtins.mapAttrs (name: _: { source = "${value.source}/${name}"; target = "${value.target}/${name}"; }) (builtins.readDir value.source))
+      else
+        { ${value.target} = { source = value.source; }; }
+      ) a;
+  in
+    recursive {
+      "firefox-devedition-desktop-entry" = {
+        source = "${pkgs.firefox-devedition}/share";
+        target = ".local/share";
+      };
+    }
+  );
+  */
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
