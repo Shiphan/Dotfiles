@@ -29,8 +29,8 @@
       fcitx5-lua
       # fcitx5-tokyonight
       fcitx5-nord
-      (callPackage ./fcitx5-mcbopomofo.nix { })
-      # fcitx5-mcbopomofo
+      # (callPackage ./fcitx5-mcbopomofo.nix { })
+      fcitx5-mcbopomofo
     ];
   };
 
@@ -75,6 +75,7 @@
     krita
     obs-studio
     vscodium
+    libreoffice
     networkmanagerapplet
 
     qemu
@@ -82,8 +83,10 @@
     swtpm
 
     discord
-    # davinci-resolve
+    davinci-resolve
 
+    arduino-ide
+    arduino-cli
     yt-dlp
     nodejs
 
@@ -119,6 +122,7 @@
     kotlin-language-server
     pyright
     postgres-lsp
+    arduino-language-server
     bash-language-server
     nil
     nixd
@@ -130,7 +134,10 @@
     templ
     svelte-language-server
     lua-language-server
+    stylua
   ];
+
+  xdg.enable = true;
 
   xdg.desktopEntries = {
     /*
@@ -188,7 +195,7 @@
           -tpmdev emulator,id=tpm0,chardev=chrtpm \
           -device tpm-tis,tpmdev=tpm0 \
           -boot d \
-          -cdrom ${config.home.homeDirectory}/Downloads/Win11_24H2_Chinese_Traditional_x64.iso \
+          -cdrom ${config.home.homeDirectory}/Downloads/Win10_22H2_Chinese_Traditional_x64v1.iso \
           ${config.home.homeDirectory}/.local/share/qemu-img/image_file_1
 
           # -boot menu=on \
@@ -262,12 +269,6 @@
     bash = {
       enable = true;
       enableCompletion = true;
-      shellAliases = {
-        "ls" = "ls --color=auto";
-        "grep" = "grep --color=auto";
-        "ll" = "ls -lh";
-        "lla" = "ls -lha";
-      };
       initExtra = ''
         PS1=' \[\e[0;38;2;180;200;220m\]\[\e[1;38;2;64;64;64;48;2;180;200;220m\]\u\[\e[0;38;2;64;64;64;48;2;180;200;220m\] @\h \[\e[0;38;2;20;44;68;48;2;180;200;220m\]\[\e[1;38;2;180;200;220;48;2;20;44;68m\]\W $(if [ -d .git ]; then echo " "; else echo "󰉋 "; fi)\[\e[0;38;2;20;44;68;48;2;180;200;220m\]\[\e[1;38;2;64;64;64;48;2;180;200;220m\] \$\[\e[0;38;2;180;200;220m\]\[\e[0m\] '
 
@@ -309,17 +310,41 @@
           file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
         }
       ];
-      shellAliases = {
-        "ls" = "ls --color=auto";
-        "grep" = "grep --color=auto";
-        "ll" = "ls -lh";
-        "lla" = "ls -lha";
-      };
       initExtra = ''
+        zstyle ':completion:*' menu select
+        zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+        bindkey "^[OA" history-beginning-search-backward
+        bindkey "^[[A" history-beginning-search-backward
+        bindkey "^[OB" history-beginning-search-forward
+        bindkey "^[[B" history-beginning-search-forward
+
         setopt PROMPT_SUBST
-        PROMPT=' %F{#b4c8dc}%B%F{#404040}%K{#b4c8dc}%n%b @%M %F{#142c44}%B%F{#b4c8dc}%K{#142c44}%1~%b $(if [ -d .git ]; then echo " "; else echo "󰉋 "; fi)%F{#142c44}%K{#b4c8dc} %B%F{#404040}%K{#b4c8dc}%(!.#.$)%b%F{#b4c8dc}%k%f '
+        PROMPT=' %F{#b4c8dc}%B%F{#404040}%K{#b4c8dc}%n%b @%M %F{#142c44}%B%F{#b4c8dc}%K{#142c44}%~%b%F{#142c44}%K{#b4c8dc}%B%F{#404040} $(git status &> /dev/null; if [ $? -eq 0 ]; then echo " "; else echo "󰉋 "; fi)$(git branch --show-current 2> /dev/null)%b%F{#b4c8dc}%k%f
+         %(!.#.$) '
+
+        wdi() {
+            if [[ $# -le 1 ]]; then
+                dir=$(wtdwi "$1")
+                [[ $? -eq 0 ]] && cd "$dir"
+            else
+                echo "too many arguments"
+            fi
+        }
+
+        echo
+        figlet " NixOS $(date +"%I:%M %p")"
+        echo
       '';
     };
+  };
+  home.shellAliases = {
+    "ls" = "ls --color=auto";
+    "grep" = "grep --color=auto";
+    "ll" = "ls -lh";
+    "lla" = "ls -lha";
+    "lsa" = "ls -ha";
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

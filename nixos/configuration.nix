@@ -83,6 +83,7 @@
 
   services = {
     fwupd.enable = true;
+    gvfs.enable = true;
     displayManager = {
       # defaultSession = "hyprland";
       sddm = {
@@ -145,6 +146,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     # packages = with pkgs; [ ];
+    shell = pkgs.zsh;
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -206,6 +208,9 @@
       xwayland.enable = true;
     };
 
+    zsh = {
+      enable = true;
+    };
     neovim = {
       enable = true;
       defaultEditor = true;
