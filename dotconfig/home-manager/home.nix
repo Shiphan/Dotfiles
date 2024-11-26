@@ -36,6 +36,7 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "google-chrome"
+    "obsidian"
     "discord"
     "davinci-resolve"
   ];
@@ -49,7 +50,7 @@
     google-chrome
     nautilus
     loupe
-    totem
+    vlc
     kdePackages.dolphin
     kdePackages.qtwayland
     kdePackages.qtsvg
@@ -58,6 +59,7 @@
     krita
     obs-studio
     vscodium
+    jetbrains.idea-community
     libreoffice
     networkmanagerapplet
 
@@ -65,6 +67,7 @@
     OVMF
     swtpm
 
+    obsidian
     discord
     davinci-resolve
 
@@ -72,6 +75,7 @@
     arduino-cli
     yt-dlp
     nodejs
+    gradle
 
     btop
     radeontop
