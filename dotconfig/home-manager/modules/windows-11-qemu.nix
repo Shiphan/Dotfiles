@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    qemu
+    OVMF
+    swtpm
+  ];
   xdg.desktopEntries = {
     # FIXME: windows 11 vm not work
     "windows-11" = {

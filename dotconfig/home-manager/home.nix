@@ -18,6 +18,7 @@
   imports = [
     ./modules/theme.nix
     ./modules/shell.nix
+    ./modules/desktop-environment.nix
     ./modules/kickstart-nvim.nix
     # ./modules/firefox.nix
     # ./modules/windows-11-qemu.nix
@@ -44,13 +45,10 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    kitty
     firefox
     chromium
     google-chrome
-    nautilus
     loupe
-    vlc
     kdePackages.dolphin
     kdePackages.qtwayland
     kdePackages.qtsvg
@@ -61,11 +59,6 @@
     vscodium
     jetbrains.idea-community
     libreoffice
-    networkmanagerapplet
-
-    qemu
-    OVMF
-    swtpm
 
     obsidian
     discord
@@ -81,22 +74,6 @@
     radeontop
     # nvtop
 
-    grim
-    slurp
-    cliphist
-    libnotify
-    dunst
-    eww
-    playerctl
-    brightnessctl
-    rofi-wayland
-    pavucontrol
-    networkmanagerapplet
-
-    hyprlock
-    hypridle
-    hyprpaper
-    (callPackage ./pkgs/snackdaemon.nix { })
     (callPackage ./pkgs/wdi.nix { })
   ];
 
