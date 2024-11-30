@@ -25,7 +25,7 @@
         }
 
         echo
-        ${pkgs.figlet} " NixOS $(date +"%I:%M %p")"
+        ${pkgs.figlet}/bin/figlet " NixOS $(date +"%I:%M %p")"
         echo
       '';
     };
@@ -77,7 +77,7 @@
         }
 
         echo
-        figlet " NixOS $(date +"%I:%M %p")"
+        ${pkgs.figlet}/bin/figlet " NixOS $(date +"%I:%M %p")"
         echo
       '';
     };
