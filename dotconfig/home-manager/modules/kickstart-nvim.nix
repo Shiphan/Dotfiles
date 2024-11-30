@@ -20,7 +20,7 @@
     hyprls
     nodePackages.vscode-json-languageserver
     superhtml
-    # (callPackage ../pkgs/npm/node-env.nix { }) # vscode lsp
+    (callPackage ../pkgs/npm/default.nix { }).vscode-langservers-extracted
     htmx-lsp
     templ
     svelte-language-server
