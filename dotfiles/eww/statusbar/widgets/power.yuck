@@ -1,0 +1,73 @@
+(include "./digitsdisplay.yuck")
+(defpoll batterylevel
+    :interval "2s"
+
+    `bash ./statusbar/scripts/get-battery-level.sh`
+)
+
+(defwidget power []
+    (box
+        :class "widget"
+        :space-evenly false
+
+        (stack
+            :transition "slidedown"
+            :same-size false
+            :selected {EWW_BATTERY == "" ? 0 : 1}
+
+            ""
+            (box
+                :space-evenly false
+
+                (stack
+
+                    :transition "slidedown"
+                    :same-size true
+                    :selected {EWW_BATTERY.BAT1.status == "Charging" ? 1 : 0}
+
+                    (battery)
+                    (charging)
+                )
+                ;{EWW_BATTERY.BAT1.capacity}
+                (digitsdisplay
+                    :transition "slidedown"
+                    :value {EWW_BATTERY.BAT1.capacity}
+                )
+            )
+        )
+    )
+)
+
+(defwidget battery []
+    (stack
+        :transition "slidedown"
+        :same-size true
+        :selected batterylevel
+
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+    )
+)
+
+(defwidget charging []
+    (stack
+        :transition "slidedown"
+        :same-size true
+        :selected batterylevel
+
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+        ""
+    )
+)

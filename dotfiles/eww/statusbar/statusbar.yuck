@@ -1,0 +1,105 @@
+(defwindow statusbar
+	:monitor 0
+	:geometry (geometry
+		:x "0%"
+		:y "0%"
+		;:width "100%"
+		:width "127.65957446808%"
+		:height "10px"
+		:anchor "top center"
+	)
+	:stacking "fg"
+	:exclusive true
+	:focusable false
+	:namespace "ewwStatusBar"
+
+	(centerbox
+		:orientation "horizontal"
+
+		(left)
+		(center)
+		(right)
+	)
+)
+
+(include "./statusbar/widgets/power.yuck")
+(include "./statusbar/widgets/clock.yuck")
+(include "./statusbar/widgets/windowinfo.yuck")
+(include "./statusbar/widgets/workspaces.yuck")
+(include "./statusbar/widgets/audio.yuck")
+(include "./statusbar/widgets/network.yuck")
+(include "./statusbar/widgets/bluetooth.yuck")
+(include "./statusbar/widgets/devicemonitor.yuck")
+(include "./statusbar/widgets/powerprofile.yuck")
+
+(defwidget left []
+	(box
+		:halign "start"
+		:orientation "horizontal"
+		:space-evenly false
+		:spacing 6
+
+		(button
+			:class "widget"
+			:onclick `eww update powermenu-mode="normal"; eww open powermenu`
+
+			""
+		)
+		(power)
+		(clock)
+		(windowinfo)
+		(box
+			:class "widget"
+
+			(systray
+				:orientation "horizontal"
+				:spacing 6
+				:prepend-new false
+				:icon-size 16
+			)
+		)
+	)
+)
+
+(defwidget center []
+	(box
+		:halign "center"
+		:orientation "horizontal"
+		:space-evenly false
+		:spacing 60
+
+		(workspaces)
+	)
+)
+
+(defwidget right []
+	(box
+		:halign "end"
+		:orientation "horizontal"
+		:space-evenly false
+		:spacing 6
+
+		(audio)
+		(box
+			:class "widget"
+			:space-evenly true
+			;:space-evenly false
+			:spacing 2
+
+			(network)
+			(bluetooth)
+		)
+		(devicemonitor)
+		(box
+			:class "widget"
+			:space-evenly false
+
+			;""
+			(powerprofile)
+		)
+		;(label
+		;	:class "widget"
+		;	:text ""
+		;)
+	)
+)

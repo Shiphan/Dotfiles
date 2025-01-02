@@ -1,0 +1,45 @@
+(deflisten workspaces
+    "bash ./statusbar/scripts/get-workspaces.sh"
+)
+
+(defwidget workspaces []
+    (eventbox
+        :onscroll "bash ./statusbar/scripts/change-active-workspace.sh {} ${workspaces.active.spaceId}"
+
+        (box 
+            :class "widget"
+            :space-evenly false
+            :spacing 8
+
+            (box
+                :space-evenly false
+                :spacing 8
+                :visible {workspaces.specialInfo != "[]"}
+
+                (for specialspace in {workspaces.specialInfo}
+                    (label
+                        :unindent false
+                        :class {workspaces.active.specialId == specialspace.id && workspaces.active.onSpecial ? "current" : ""}
+                        :text {workspaces.active.specialId == specialspace.id && workspaces.active.onSpecial ? " > ${substring(specialspace.name, 8, strlength(specialspace.name) - 8)} < " : substring(specialspace.name, 8, strlength(specialspace.name) - 8)}
+                    )
+                )
+            )
+            (box
+                :space-evenly false
+                :spacing 8
+
+                (for workspace in {workspaces.spaceInfo}
+                    (eventbox
+                        :onclick "hyprctl dispatch workspace ${workspace.id}"
+
+                        (label
+                            :unindent false
+                            :class {workspaces.active.spaceId == workspace.id ? "current" : ""}
+                            :text {workspaces.active.spaceId == workspace.id ? " > ${workspace.name} < " : workspace.name}
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
