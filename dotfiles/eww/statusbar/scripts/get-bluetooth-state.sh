@@ -27,7 +27,7 @@ connected=$(if [[ "$(bluetoothctl devices Connected)" = "" ]]; then echo false; 
 
 printinfo
 
-tail -f /dev/null | bluetoothctl | while read -r line ; do
+sleep inf | bluetoothctl | while read -r line ; do
 	update=true
 
 	if [[ $line =~ Controller\ .{17}\ Powered:\ no ]] ; then
@@ -40,7 +40,7 @@ tail -f /dev/null | bluetoothctl | while read -r line ; do
 		searching=false
 	elif [[ $line =~ Controller\ .{17}\ Discovering:\ yes ]] ; then
 		searching=true
-	elif [[ $line =~ Device\ .{17}\ Connected:\ noetooth ]] ; then
+	elif [[ $line =~ Device\ .{17}\ Connected:\ no ]] ; then
 		connected=false
 	elif [[ $line =~ Device\ .{17}\ Connected:\  ]] ; then
 		connected=true

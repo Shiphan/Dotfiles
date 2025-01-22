@@ -5,7 +5,7 @@
 }
 
 .statusbar {
-	margin: 10px 10px 0;
+	padding: 10px 10px 0;
 
 	* {
 		all: initial;
@@ -32,7 +32,21 @@
 			color: rgba(50, 50, 50, 0.9);
 			border-radius: 0.5em;
 		}
+
+		menu {
+			background-color: rgba(50, 50, 50, 0.85);
+			color: rgba(200, 200, 200, 0.9);
+			padding: 2px 8px;
+			border-radius: 0.5em;
+		}
 	}
+}
+
+tooltip {
+	background-color: rgba(50, 50, 50, 0.85);
+	color: rgba(200, 200, 200, 0.9);
+	padding: 2px 8px;
+	border-radius: 0.5em;
 }
 
 .snackbar {
