@@ -13,6 +13,7 @@
     eww
     hyprlock
     hyprpaper
+    hyprsunset
 
     hypridle
     grim

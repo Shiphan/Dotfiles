@@ -21,8 +21,8 @@
       fcitx5-lua
       # fcitx5-tokyonight
       fcitx5-nord
-      # (callPackage ./pkgs/fcitx5-mcbopomofo.nix { })
-      fcitx5-mcbopomofo
+      (callPackage ./pkgs/fcitx5-mcbopomofo.nix { })
+      #fcitx5-mcbopomofo
     ];
   };
 
@@ -53,7 +53,7 @@
 
     obsidian
     discord
-    davinci-resolve
+    # davinci-resolve
 
     arduino-ide
     arduino-cli
@@ -63,7 +63,7 @@
 
     btop
     radeontop
-    # nvtop
+    nvtopPackages.amd
 
     (callPackage ./pkgs/wdi.nix { })
     cloc

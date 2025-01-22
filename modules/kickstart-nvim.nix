@@ -3,9 +3,6 @@
 {
   programs.neovim.enable = true;
   home.packages = with pkgs; [
-    vimPlugins.lazy-nvim
-
-    # lsp
     clang-tools
     rust-analyzer
     rustfmt
@@ -29,5 +26,6 @@
     svelte-language-server
     lua-language-server
     stylua
+    marksman
   ];
 }

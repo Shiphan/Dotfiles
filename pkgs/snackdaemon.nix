@@ -4,15 +4,15 @@
   fetchFromGitHub,
 }:
 
-buildGoModule {
+buildGoModule rec {
   pname = "snackdaemon";
-  version = "unstable-2024-07-18";
+  version = "0.4.0";
 
   src = fetchFromGitHub {
     owner = "Shiphan";
     repo = "snackdaemon";
-    rev = "14867c2853b1284d45ac4caa20e75f370074cd77";
-    hash = "sha256-IZ8UvdFYN6VZG099BfDxbqI+Ay/VmtyqLZfUAysUAUM=";
+    rev = "v${version}";
+    hash = "sha256-pvmaHlnceTOBC6POE9Zm6ZXUUIUo5Zp/WhMc6UBevvI=";
   };
 
   vendorHash = null;

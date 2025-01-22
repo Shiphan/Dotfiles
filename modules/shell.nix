@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    figlet
+  ];
   home.shellAliases = {
     "ls" = "ls --color=auto";
     "grep" = "grep --color=auto";
@@ -26,7 +29,7 @@
         }
 
         echo
-        ${pkgs.figlet}/bin/figlet " NixOS $(date +"%I:%M %p")"
+        figlet -t -f smslant " NixOS  $(date +"%I:%M %p")"
         echo
       '';
     };
@@ -65,7 +68,9 @@
         bindkey "^[[A" history-beginning-search-backward
         bindkey "^[OB" history-beginning-search-forward
         bindkey "^[[B" history-beginning-search-forward
+        bindkey "^K" vi-kill-eol
 
+        setopt interactivecomments
         setopt PROMPT_SUBST
         PROMPT=' %F{#b4c8dc}%B%F{#404040}%K{#b4c8dc}%n%b @%M %F{#142c44}%B%F{#b4c8dc}%K{#142c44}%~%b%F{#142c44}%K{#b4c8dc}%B%F{#404040} $(git status &> /dev/null; if [ $? -eq 0 ]; then echo " "; else echo "󰉋 "; fi)$(git branch --show-current 2> /dev/null)%b%F{#b4c8dc}%k%f
          %(!.#.$) '
@@ -80,7 +85,7 @@
         }
 
         echo
-        ${pkgs.figlet}/bin/figlet " NixOS $(date +"%I:%M %p")"
+        figlet -t -f smslant " NixOS  $(date +"%I:%M %p")"
         echo
       '';
     };
