@@ -3,6 +3,8 @@
 {
   programs.neovim.enable = true;
   home.packages = with pkgs; [
+    ripgrep
+
     clang-tools
     rust-analyzer
     rustfmt
