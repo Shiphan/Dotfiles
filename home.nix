@@ -76,19 +76,7 @@
   };
 
   programs = {
-    git = {
-      enable = true;
-      lfs.enable = true;
-      userEmail = "140245703+Shiphan@users.noreply.github.com";
-      userName = "Shiphan";
-    };
-    gh = {
-      enable = true;
-      gitCredentialHelper.enable = true;
-    };
-    neovim = {
-      enable = true;
-    };
+    neovim.enable = true;
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -32,6 +32,7 @@
           ./modules/theme.nix
           ./modules/shell.nix
           ./modules/desktop-environment.nix
+          ./modules/git.nix
           ./modules/kickstart-nvim.nix
           ./modules/dotfiles.nix
           # ./modules/firefox.nix
