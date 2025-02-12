@@ -73,6 +73,7 @@
 
   services = {
     blueman-applet.enable = true;
+    mpris-proxy.enable = true;
   };
 
   programs = {
