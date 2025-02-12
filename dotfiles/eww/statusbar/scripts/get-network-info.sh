@@ -3,7 +3,12 @@
 device="wlan0"
 
 printInfo(){
-	echo "{\"enabled\":$enabled,\"connected\":$connected,\"full\":$full,\"name\":$name}"
+	jq -nc \
+		--argjson enabled "$enabled" \
+		--argjson connected "$connected" \
+		--argjson full "$full" \
+		--arg name "$name" \
+		'$ARGS.named'
 }
 
 # init
@@ -22,7 +27,7 @@ else
 	connected=true
 	full=false
 fi
-name="\"$(nmcli --get-values GENERAL.CONNECTION device show wlp1s0)\""
+name="$(nmcli --get-values GENERAL.CONNECTION device show wlp1s0)"
 printInfo
 
 nmcli monitor | while read -r line ; do
@@ -40,7 +45,7 @@ nmcli monitor | while read -r line ; do
 	elif [[ $line =~ "Networkmanager is now in the 'disconnected' state" ]] ; then
 		connected=false
 	elif [[ $line =~ " is now the primary connection" ]] ; then
-		name=$(echo "$line" | sed -e "s/ is now the primary connection//" -e "s/^'/\"/" -e "s/'$/\"/")
+		name=$(echo "$line" | sed -e "s/ is now the primary connection$//" -e "s/^'//" -e "s/'$//")
 	else
 		update=false
 	fi

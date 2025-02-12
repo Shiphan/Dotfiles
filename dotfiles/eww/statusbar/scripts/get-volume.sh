@@ -17,7 +17,11 @@ getinfo(){
 		level=0
 	fi
 
-	echo "{\"value\":$value,\"level\":$level,\"muted\":$muted}"
+	jq -nc \
+		--argjson value "$value" \
+		--argjson level $level \
+		--argjson muted $muted \
+		'$ARGS.named'
 }
 
 getinfo

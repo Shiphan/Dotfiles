@@ -16,4 +16,7 @@ else
 	level=0
 fi
 
-echo "{\"value\":$value,\"level\":$level}"
+jq -nc \
+	--argjson value "$value" \
+	--argjson level $level \
+	'$ARGS.named'

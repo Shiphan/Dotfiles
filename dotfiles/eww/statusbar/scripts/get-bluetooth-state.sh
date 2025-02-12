@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 printinfo() {
-	echo "{\"enabled\":$enabled,\"searching\":$searching,\"connected\":$connected}"
+	jq -nc \
+		--argjson enabled "$enabled" \
+		--argjson searching "$searching" \
+		--argjson connected "$connected" \
+		'$ARGS.named'
 }
 
 # init bluetooth state

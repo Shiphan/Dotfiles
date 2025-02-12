@@ -2,7 +2,13 @@
 
 getinfo(){
 	workspaces=$(hyprctl workspaces -j | jq -c 'sort_by(.id) | [ .[] | {"id","name","windows"} ]')
-	echo "{\"active\":{\"spaceId\":$spaceId, \"specialId\":$specialId, \"onSpecial\":$isSpecial}, \"spaceInfo\":$(echo "$workspaces" | jq -c '[ .[] | select(.id>0) ]'), \"specialInfo\":$(echo "$workspaces" | jq -c '[ .[] | select(.id<0) ]')}"
+	jq -nc \
+		--argjson spaceId "$spaceId" \
+		--argjson specialId "$specialId" \
+		--argjson onSpecial "$isSpecial" \
+		--argjson spaceInfo "$(echo "$workspaces" | jq -c '[ .[] | select(.id>0) ]')" \
+		--argjson specialInfo "$(echo "$workspaces" | jq -c '[ .[] | select(.id<0) ]')" \
+		'$ARGS.named | {active: {spaceId, specialId, onSpecial}, spaceInfo, specialInfo}'
 }
 
 initactive=$(hyprctl monitors -j)

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 getinfo(){
-	hyprctl activewindow -j | jq '{"class", "title", "fullscreen", "floating", "xwayland"}' -c
+	hyprctl activewindow -j | jq -c '{class, title, fullscreen, floating, xwayland}'
 }
 
 getinfo
