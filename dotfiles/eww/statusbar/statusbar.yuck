@@ -3,8 +3,8 @@
 	:geometry (geometry
 		:x "0%"
 		:y "0%"
-		;:width "100%"
-		:width "127.65957446808%"
+		:width "100%"
+		;:width "127.65957446808%"
 		:height "10px"
 		:anchor "top center"
 	)
