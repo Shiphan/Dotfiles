@@ -17,13 +17,16 @@
 
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-lua
-      # fcitx5-tokyonight
-      fcitx5-nord
-      (callPackage ./pkgs/fcitx5-mcbopomofo.nix { })
-      #fcitx5-mcbopomofo
-    ];
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-lua
+        # fcitx5-tokyonight
+        fcitx5-nord
+        # (callPackage ./pkgs/fcitx5-mcbopomofo.nix { })
+        fcitx5-mcbopomofo
+      ];
+    };
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
