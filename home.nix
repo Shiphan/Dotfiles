@@ -33,7 +33,7 @@
     "google-chrome"
     "obsidian"
     "discord"
-    "davinci-resolve"
+    # "davinci-resolve"
   ];
 
   # The home.packages option allows you to install Nix packages into your
@@ -42,34 +42,42 @@
     firefox
     chromium
     google-chrome
-    loupe
-    kdePackages.dolphin
-    kdePackages.qtwayland
-    kdePackages.qtsvg
+
+    kdePackages.filelight # check disk usage
+    gparted
+
     blender
     gimp
     krita
+    inkscape
     obs-studio
-    vscodium
-    jetbrains.idea-community
-    libreoffice
-
-    obsidian
-    discord
+    kdePackages.kdenlive
     # davinci-resolve
 
+    flatpak
+    gnome-software
+    kdePackages.discover
+
+    libreoffice
+    obsidian
+    # logseq
+    joplin-desktop
+    discord
+
+    vscodium
+    jetbrains.idea-community
     arduino-ide
+
+    podman-compose
+    btop
+    nvtopPackages.amd
+    cloc
     arduino-cli
     yt-dlp
     nodejs
     gradle
-
-    btop
-    radeontop
-    nvtopPackages.amd
-
-    (callPackage ./pkgs/wdi.nix { })
-    cloc
+    nushell
+    # (callPackage ./pkgs/wdi.nix { })
   ];
 
   xdg.enable = true;

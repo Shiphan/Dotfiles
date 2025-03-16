@@ -16,6 +16,7 @@
     arduino-language-server
     bash-language-server
     haskell-language-server
+    ghc
     nil
     nixd
     hyprls
@@ -24,6 +25,8 @@
     (callPackage ../pkgs/npm/default.nix { }).vscode-langservers-extracted
     htmx-lsp
     typescript-language-server
+    php84Packages.psalm
+    phpactor
     templ
     svelte-language-server
     lua-language-server

@@ -4,25 +4,39 @@
   home.packages = with pkgs; [
     kitty
     wezterm
-    vlc
-    nautilus
+    alacritty
+    ghostty
+
     rofi-wayland
     pulseaudio
     # pwvucontrol
     (nixpkgs-latest.legacyPackages.x86_64-linux.pwvucontrol)
     networkmanagerapplet
 
+    vlc
+    nautilus
+    gnome-system-monitor
+    loupe
+    kdePackages.plasma-systemmonitor
+    kdePackages.dolphin
+    kdePackages.gwenview # image viewer
+    kdePackages.qtwayland
+    kdePackages.qtsvg
+
     eww
     hyprlock
     hyprpaper
     hyprsunset
+    hyprpicker
+    hyprsysteminfo
+    hyprland-qt-support
+    dunst
+    adwaita-icon-theme
 
     hypridle
     grim
     slurp
     cliphist
-    libnotify
-    dunst
     playerctl
     brightnessctl
     (callPackage ../pkgs/snackdaemon.nix { })
