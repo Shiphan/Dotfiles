@@ -10,9 +10,10 @@
     nixosConfigurations."nixos-laptop" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = args;
-      modules = [ 
+      modules = [
         ./configuration.nix
 	./modules/users.nix
+	./modules/boot.nix
 	./modules/suspend.nix
 	./modules/display-manager.nix
 	./modules/hyprland.nix
