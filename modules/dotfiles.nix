@@ -1,26 +1,15 @@
 { config, ... }:
 
 {
-  home.file = {
-    "eww" = {
-      source = ../dotfiles/eww;
-      target = ".config/eww";
+  xdg.enable = true;
+  xdg.configFile =
+  let
+    mapFn = x: {
+      name = x;
+      value.source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/home-manager/dotfiles/${x}";
     };
-    "hypr" = {
-      source = ../dotfiles/hypr;
-      target = ".config/hypr";
-    };
-    "kitty" = {
-      source = ../dotfiles/kitty;
-      target = ".config/kitty";
-    };
-    "rofi" = {
-      source = ../dotfiles/rofi;
-      target = ".config/rofi";
-    };
-    "snackdaemon" = {
-      source = ../dotfiles/snackdaemon;
-      target = ".config/snackdaemon";
-    };
-  };
+    files = x: builtins.listToAttrs (map mapFn x);
+  in
+    # TODO: add dunst and wezterm
+    files [ "eww" "hypr" "kitty" "rofi" "snackdaemon" ];
 }
