@@ -37,12 +37,14 @@
   };
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
+    # platformTheme.name = "qtct";
     style = {
-      name = "Adwaita";
+      name = "breeze";
       package = with pkgs; [
-        adwaita-qt
-        adwaita-qt6
+        # adwaita-qt
+        # adwaita-qt6
+        kdePackages.breeze
+        # libsForQt5.breeze-qt5
       ];
     };
   };
