@@ -10,6 +10,6 @@
     };
     files = x: builtins.listToAttrs (map mapFn x);
   in
-    # TODO: add dunst and wezterm
-    files [ "eww" "hypr" "kitty" "rofi" "snackdaemon" ];
+    # TODO: add wezterm
+    files [ "eww" "hypr" "kitty" "rofi" "snackdaemon" "dunst" ];
 }
