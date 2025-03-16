@@ -97,9 +97,11 @@
 			;""
 			(powerprofile)
 		)
-		;(label
-		;	:class "widget"
-		;	:text ""
-		;)
+		(button
+			:class "widget"
+			:onclick `dunstctl history-pop`
+
+			""
+		)
 	)
 )
