@@ -3,11 +3,31 @@
 {
   home.packages = with pkgs; [
     qemu
-    OVMF
-    swtpm
+    # OVMF
+    # swtpm
   ];
   xdg.desktopEntries = {
+    "windows-10" = {
+      name = "Windows 10";
+      icon = "qemu";
+      # icon = "${pkgs.qemu}/share/icons/hicolor/scalable/apps/qemu.svg";
+      terminal = true;
+      exec = "${pkgs.writeShellScript "qemu-windows-11" ''
+        "${pkgs.qemu}/bin/qemu-system-x86_64" \
+          -monitor stdio \
+          -enable-kvm \
+          -cpu host \
+          -vga virtio \
+          -m 12G \
+          -machine q35 \
+          -usb -device usb-tablet \
+          -boot d \
+          -cdrom ${config.home.homeDirectory}/Downloads/Win10_22H2_Chinese_Traditional_x64v1.iso \
+          ${config.home.homeDirectory}/.local/share/qemu-img/image_file_1
+      ''}";
+    };
     # FIXME: windows 11 vm not work
+    /*
     "windows-11" = {
       name = "Windows 11";
       icon = "qemu";
@@ -17,13 +37,13 @@
         # cp -n ${pkgs.OVMF.fd}/FV/OVMF_CODE.fd ${config.home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd
         # chmod +w ${config.home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd
 
-        swtpm socket --tpm2 --tpmstate dir=${config.home.homeDirectory}/.local/share/qemu-img/tpm --ctrl type=unixio,path=${config.home.homeDirectory}/.local/share/qemu-img/tpm/swtpm-sock &
+        # swtpm socket --tpm2 --tpmstate dir=${config.home.homeDirectory}/.local/share/qemu-img/tpm --ctrl type=unixio,path=${config.home.homeDirectory}/.local/share/qemu-img/tpm/swtpm-sock &
 
         qemu-system-x86_64 \
           -monitor stdio \
           -enable-kvm \
           -cpu host \
-          -vga qxl \
+          -vga virtio \
           -m 12G \
           -machine q35 \
           -device amd-iommu \
@@ -45,5 +65,6 @@
           # -drive file=${config.home.homeDirectory}/.local/share/qemu-img/image_file_1,format=qcow2
       ''}";
     };
+    */
   };
 }

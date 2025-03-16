@@ -37,7 +37,7 @@
           ./modules/kickstart-nvim.nix
           ./modules/dotfiles.nix
           # ./modules/firefox.nix
-          # ./modules/windows-11-qemu.nix
+          ./modules/qemu-windows-vm.nix
         ];
 
         # Optionally use extraSpecialArgs
