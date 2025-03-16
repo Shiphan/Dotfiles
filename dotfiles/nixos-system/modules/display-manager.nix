@@ -11,10 +11,12 @@
       extraPackages = with pkgs; [
         kdePackages.qtsvg
         kdePackages.qt5compat
+        kdePackages.qtmultimedia
       ];
     };
   };
   environment.systemPackages = with pkgs; [
     sddm-astronaut
+    kdePackages.qtmultimedia
   ];
 }
