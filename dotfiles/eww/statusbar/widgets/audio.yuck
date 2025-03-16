@@ -6,7 +6,7 @@
 (defwidget audio []
     (button
         :class "widget"
-        :onclick "bash ./statusbar/scripts/open-pavucontrol.sh"
+        :onclick "./statusbar/scripts/open-pwvucontrol.sh"
 
         (stack
             :halign "center"
