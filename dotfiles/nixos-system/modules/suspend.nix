@@ -4,14 +4,14 @@
   swapDevices = [
     {
       device = "/swapfile";
-      size = 16*1024;
+      size = 28*1024;
     }
   ];
 
   boot = {
     resumeDevice = "/dev/nvme0n1p6";
     kernelParams = [
-      "resume_offset=14116864"
+      "resume_offset=23891968"
     ];
   };
 
