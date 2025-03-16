@@ -5,7 +5,7 @@
 
 (defwidget bluetooth []
     (button
-        :onclick "bash ./statusbar/scripts/open-blueman-manager.sh"
+        :onclick "./statusbar/scripts/open-blueman-manager.sh"
 
         (stack
             :same-size true
