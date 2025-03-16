@@ -35,6 +35,8 @@
     gvfs.enable = true;
     # desktopManager.plasma6.enable = true;
     blueman.enable = true;
+    upower.enable = true;
+    flatpak.enable = true;
 
     # Enable CUPS to print documents.
     # printing.enable = true;
@@ -108,12 +110,12 @@
       defaultEditor = true;
     };
 
-    steam = {
-      enable = true;
-      # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-      localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-    };
+    # steam = {
+    #   enable = true;
+    #   # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    #   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    #   localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    # };
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
@@ -124,6 +126,11 @@
     gnupg.agent = {
       enable = true;
     };
+  };
+
+  virtualisation = {
+    podman.enable = true;
+    waydroid.enable = true;
   };
 
   # List services that you want to enable:
