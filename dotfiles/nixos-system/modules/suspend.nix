@@ -21,4 +21,6 @@
     AllowSuspendThenHibernate=yes
     HibernateDelaySec=30min
   '';
+
+  services.logind.lidSwitch = "suspend-then-hibernate";
 }
