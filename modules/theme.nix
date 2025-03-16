@@ -1,10 +1,17 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    rose-pine-hyprcursor
+  ];
+  home.sessionVariables = {
+    "HYPRCURSOR_THEME" = "rose-pine-hyprcursor";
+    "HYPRCURSOR_SIZE" = 24;
+  };
   home.pointerCursor = {
-    name = "Adwaita";
+    name = "BreezeX-RosePine-Linux";
     size = 24;
-    package = pkgs.adwaita-icon-theme;
+    package = pkgs.rose-pine-cursor;
     gtk.enable = true;
     x11.enable = true;
   };
