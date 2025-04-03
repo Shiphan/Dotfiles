@@ -38,6 +38,7 @@
           ./modules/dotfiles.nix
           # ./modules/firefox.nix
           ./modules/qemu-windows-vm.nix
+          ./modules/qemu-arch-vm.nix
         ];
 
         # Optionally use extraSpecialArgs
