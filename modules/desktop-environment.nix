@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-latest, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -9,8 +9,7 @@
 
     rofi-wayland
     pulseaudio
-    # pwvucontrol
-    (nixpkgs-latest.legacyPackages.x86_64-linux.pwvucontrol)
+    pwvucontrol
     networkmanagerapplet
 
     vlc
