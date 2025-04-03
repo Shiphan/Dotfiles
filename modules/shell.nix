@@ -10,6 +10,7 @@
     "ll" = "ls -lh";
     "lla" = "ls -lha";
     "lsa" = "ls -ha";
+    ":q" = "exit";
     # "trash" = "gio trash";
   };
   programs = {
