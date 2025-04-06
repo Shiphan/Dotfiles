@@ -1,9 +1,6 @@
 ```
-git clone https://github.com/Shiphan/Dotfiles.git
+git clone https://github.com/Shiphan/Dotfiles.git ~/.config/home-manager
 ```
 ```
-cd Dotfiles
-```
-```
-bash setup.sh
+home-manager switch
 ```
