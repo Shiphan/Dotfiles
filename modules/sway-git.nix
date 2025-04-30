@@ -1,26 +1,26 @@
 { pkgs, ... }:
 
 let
-  wlroots = pkgs.wlroots.overrideAttrs (_: {
-    version = "unstable-2025-03-22";
+  wlroots = pkgs.wlroots.overrideAttrs (_: rec {
+    version = "0.19.0-rc3";
 
     src = pkgs.fetchFromGitLab {
       domain = "gitlab.freedesktop.org";
       owner = "wlroots";
       repo = "wlroots";
-      rev = "128cd07e9156a80dcd79178c3e669ddae2c71430";
-      hash = "sha256-ecMWJGqzT2Qb6LViA884WxOInr7BeiEXPsR853d8mSs=";
+      rev = version;
+      hash = "sha256-ZqchXPR/yfkAGwiY9oigif0Ef4OijHcGPGUXfHaL5v8=";
     };
   });
   sway-unwrapped =
-    (pkgs.sway-unwrapped.overrideAttrs (_: {
-      version = "unstable-2025-03-22";
+    (pkgs.sway-unwrapped.overrideAttrs (_: rec {
+      version = "1.11-rc2";
 
       src = pkgs.fetchFromGitHub {
         owner = "swaywm";
         repo = "sway";
-        rev = "c2d6aff64c1e265c8f1d95b780b54193defae18a";
-        hash = "sha256-A6QBjxmwrFmg6A7BHnKRNFMHoB8a6Q31hWvZj2KbV6c=";
+        rev = version;
+        hash = "sha256-WsAUZqeOlSHO8vMhAqwqb/DqE82MCSz0CJCDBCWbU9g=";
       };
     })).override
       (_: {

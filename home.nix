@@ -16,7 +16,8 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
       addons = with pkgs; [
@@ -47,7 +48,7 @@
     gparted
 
     blender
-    gimp
+    gimp3
     krita
     inkscape
     obs-studio
