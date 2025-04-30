@@ -93,6 +93,28 @@
   ];
 
   xdg.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+      # xdg-desktop-portal-wlr
+      # (callPackage ./pkgs/xdg-desktop-portal-luminous.nix { })
+    ];
+    config.common.default = "*";
+    # config = {
+    #   hyprland = {
+    #     default = [ "hyprland" "gtk" ];
+    #     # "org.freedesktop.impl.portal.ScreenCast" = "luminous";
+    #     # "org.freedesktop.impl.portal.Screenshot" = "luminous";
+    #   };
+    #   sway = {
+    #     default = [ "wlr" "gtk" ];
+    #     "org.freedesktop.impl.portal.ScreenCast" = [ "luminous" "wlr" ];
+    #     "org.freedesktop.impl.portal.Screenshot" = [ "luminous" "wlr" ];
+    #   };
+    # };
+  };
 
   services = {
     blueman-applet.enable = true;
