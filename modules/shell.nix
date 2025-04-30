@@ -52,13 +52,13 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       /*
-      plugins = [
-        {
-          name = "zsh-vi-mode";
-          src = pkgs.zsh-vi-mode;
-          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-        }
-      ];
+        plugins = [
+          {
+            name = "zsh-vi-mode";
+            src = pkgs.zsh-vi-mode;
+            file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+          }
+        ];
       */
       initContent = ''
         zstyle ':completion:*' menu select

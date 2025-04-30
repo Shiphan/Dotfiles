@@ -13,9 +13,16 @@
     ];
     fontconfig = {
       defaultFonts = {
-        serif = [ "Noto Serif" "Noto Serif CJK" ];
-        sansSerif = [ "Noto Sans" "Noto Sans CJK" "NotoSans Nerd Font" ];
-	monospace = [ "Noto Sans Mono" ];
+        serif = [
+          "Noto Serif"
+          "Noto Serif CJK"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "Noto Sans CJK"
+          "NotoSans Nerd Font"
+        ];
+        monospace = [ "Noto Sans Mono" ];
       };
     };
   };

@@ -10,24 +10,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     /*
-    firefox-nightly = {
-      url = "github:nix-community/flake-firefox-nightly";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+      firefox-nightly = {
+        url = "github:nix-community/flake-firefox-nightly";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
     */
   };
 
-  outputs = { nixpkgs, home-manager, ... }@args:
+  outputs =
+    { nixpkgs, home-manager, ... }@args:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
       homeConfigurations."shiphan" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
-        modules = [ 
+        modules = [
           ./home.nix
           ./modules/theme.nix
           ./modules/shell.nix
@@ -45,5 +47,6 @@
         # to pass through arguments to home.nix
         extraSpecialArgs = args;
       };
+      formatter.${system} = pkgs.nixfmt-rfc-style;
     };
 }

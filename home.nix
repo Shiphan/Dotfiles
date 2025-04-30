@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }@args:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}@args:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -30,12 +35,14 @@
     };
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "google-chrome"
-    "obsidian"
-    "discord"
-    # "davinci-resolve"
-  ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "google-chrome"
+      "obsidian"
+      "discord"
+      # "davinci-resolve"
+    ];
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
