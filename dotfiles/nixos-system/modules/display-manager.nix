@@ -7,16 +7,13 @@
       enable = true;
       wayland.enable = true;
       package = pkgs.kdePackages.sddm;
-      theme = "sddm-astronaut-theme";
+      theme = "breeze";
       extraPackages = with pkgs; [
-        kdePackages.qtsvg
-        kdePackages.qt5compat
-        kdePackages.qtmultimedia
+        kdePackages.plasma-desktop
       ];
     };
   };
   environment.systemPackages = with pkgs; [
-    sddm-astronaut
-    kdePackages.qtmultimedia
+    kdePackages.plasma-desktop
   ];
 }
