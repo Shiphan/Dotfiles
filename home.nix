@@ -63,6 +63,7 @@
     obsidian
     # logseq
     joplin-desktop
+    xournalpp
     discord
 
     vscodium
@@ -78,7 +79,10 @@
     nodejs
     gradle
     nushell
+    inetutils
     # (callPackage ./pkgs/wdi.nix { })
+
+    waycheck
   ];
 
   xdg.enable = true;

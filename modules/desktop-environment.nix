@@ -5,7 +5,7 @@
     kitty
     wezterm
     alacritty
-    ghostty
+    # ghostty
 
     rofi-wayland
     pulseaudio

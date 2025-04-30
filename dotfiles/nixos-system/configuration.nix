@@ -73,6 +73,7 @@
 
     # langs
     gcc
+    clang
     rustc
     cargo
     go
@@ -90,6 +91,7 @@
     gnumake
     unzip
     ripgrep
+    gdb
 
     # cli not tools
     sl
@@ -130,7 +132,6 @@
 
   virtualisation = {
     podman.enable = true;
-    waydroid.enable = true;
   };
 
   # List services that you want to enable:
