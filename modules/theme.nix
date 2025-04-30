@@ -1,19 +1,30 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    rose-pine-hyprcursor
-  ];
-  home.sessionVariables = {
-    "HYPRCURSOR_THEME" = "rose-pine-hyprcursor";
-    "HYPRCURSOR_SIZE" = 24;
-  };
+  # TODO: cursor in gnome gtk app is bigger
   home.pointerCursor = {
-    name = "BreezeX-RosePine-Linux";
+    name = "Breeze_Light";
     size = 24;
-    package = pkgs.rose-pine-cursor;
+    package = (pkgs.stdenv.mkDerivation {
+      name = "breeze-hyprcursor";
+      src = pkgs.kdePackages.breeze;
+      nativeBuildInputs = with pkgs; [
+        hyprcursor
+        xcur2png
+      ];
+      installPhase = ''
+        hyprcursor-util --extract share/icons/Breeze_Light --output .
+        sed -i 1s/Extracted\ Theme/Breeze_Light/g extracted_Breeze_Light/manifest.hl
+        mkdir target
+        hyprcursor-util --create extracted_Breeze_Light --output target
+        mkdir -p $out/share/icons
+        mv target/theme_Breeze_Light $out/share/icons/Breeze_Light
+        ln -s ${pkgs.kdePackages.breeze}/share/icons/Breeze_Light/* $out/share/icons/Breeze_Light/
+      '';
+    }) ;
     gtk.enable = true;
     x11.enable = true;
+    hyprcursor.enable = true;
   };
 
   dconf = {
