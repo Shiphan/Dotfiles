@@ -108,22 +108,13 @@
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
-      # xdg-desktop-portal-wlr
-      # (callPackage ./pkgs/xdg-desktop-portal-luminous.nix { })
+      kdePackages.xdg-desktop-portal-kde
     ];
-    config.common.default = "*";
-    # config = {
-    #   hyprland = {
-    #     default = [ "hyprland" "gtk" ];
-    #     # "org.freedesktop.impl.portal.ScreenCast" = "luminous";
-    #     # "org.freedesktop.impl.portal.Screenshot" = "luminous";
-    #   };
-    #   sway = {
-    #     default = [ "wlr" "gtk" ];
-    #     "org.freedesktop.impl.portal.ScreenCast" = [ "luminous" "wlr" ];
-    #     "org.freedesktop.impl.portal.Screenshot" = [ "luminous" "wlr" ];
-    #   };
-    # };
+    config.common.default = [
+      "hyprland"
+      "gtk"
+      "kde"
+    ];
   };
 
   services = {
