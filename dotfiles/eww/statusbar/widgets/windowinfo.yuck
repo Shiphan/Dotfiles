@@ -8,6 +8,7 @@
 		:spacing 2
 
 		(label
+			:class "nerd-font"
 			:text {(windowinfojson.xwayland ?: false) ? " " : " "}
 		)
 		(stack
