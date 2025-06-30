@@ -6,13 +6,13 @@
 
 buildGoModule rec {
   pname = "snackdaemon";
-  version = "0.4.0";
+  version = "0.4.1";
 
   src = fetchFromGitHub {
     owner = "Shiphan";
     repo = "snackdaemon";
     rev = "v${version}";
-    hash = "sha256-pvmaHlnceTOBC6POE9Zm6ZXUUIUo5Zp/WhMc6UBevvI=";
+    hash = "sha256-NFFqB5diAFrshxZoyEPOOt3lv4izxxsuQf1SfFG6IIw=";
   };
 
   vendorHash = null;
