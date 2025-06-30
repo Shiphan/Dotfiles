@@ -19,6 +19,7 @@
     kdePackages.plasma-systemmonitor
     kdePackages.dolphin
     kdePackages.gwenview # image viewer
+    kdePackages.kalk
     kdePackages.qtwayland
     kdePackages.qtsvg
 

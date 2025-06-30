@@ -20,9 +20,9 @@
     nil
     nixd
     hyprls
-    nodePackages.vscode-json-languageserver
+    vscode-json-languageserver
     superhtml
-    (callPackage ../pkgs/npm/default.nix { }).vscode-langservers-extracted
+    # (callPackage ../pkgs/npm/default.nix { }).vscode-langservers-extracted
     htmx-lsp
     typescript-language-server
     php84Packages.psalm

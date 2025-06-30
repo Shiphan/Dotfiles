@@ -40,7 +40,7 @@
           # ./modules/firefox.nix
           ./modules/qemu-windows-vm.nix
           ./modules/qemu-arch-vm.nix
-          ./modules/sway-git.nix
+          # ./modules/sway-git.nix
         ];
 
         # Optionally use extraSpecialArgs

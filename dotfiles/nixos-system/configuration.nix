@@ -102,6 +102,7 @@
     unzip
     ripgrep
     gdb
+    file
 
     # cli not tools
     sl

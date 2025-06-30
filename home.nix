@@ -2,8 +2,9 @@
   config,
   lib,
   pkgs,
+  # firefox-nightly,
   ...
-}@args:
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -41,6 +42,7 @@
       "google-chrome"
       "obsidian"
       "discord"
+      "android-studio-stable"
       # "davinci-resolve"
     ];
 
@@ -48,19 +50,24 @@
   # environment.
   home.packages = with pkgs; [
     firefox
+    # args.firefox-nightly.packages.${pkgs.system}.firefox-nightly
     chromium
     google-chrome
 
     kdePackages.filelight # check disk usage
     gparted
 
-    blender
+    blender-hip
     gimp3
     krita
     inkscape
     obs-studio
     kdePackages.kdenlive
     # davinci-resolve
+    godot
+    kicad
+    freecad-qt6
+    openscad
 
     flatpak
     gnome-software
@@ -75,8 +82,11 @@
 
     vscodium
     jetbrains.idea-community
+    android-studio
     arduino-ide
 
+    # rustup
+    podman-desktop
     podman-compose
     btop
     nvtopPackages.amd
@@ -88,8 +98,8 @@
     nushell
     inetutils
     # (callPackage ./pkgs/wdi.nix { })
-
-    waycheck
+    tmux
+    zellij
   ];
 
   xdg.enable = true;
