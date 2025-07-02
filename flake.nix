@@ -9,6 +9,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvim-dependencies = {
+      url = "git:/home/shiphan/.config/nvim";
+      # url = "github:shiphan/nvim-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     /*
       firefox-nightly = {
         url = "github:nix-community/flake-firefox-nightly";
@@ -18,7 +23,7 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@args:
+    { nixpkgs, home-manager, nvim-dependencies, ... }@args:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -35,12 +40,12 @@
           ./modules/shell.nix
           ./modules/desktop-environment.nix
           ./modules/git.nix
-          ./modules/kickstart-nvim.nix
           ./modules/dotfiles.nix
           # ./modules/firefox.nix
           ./modules/qemu-windows-vm.nix
           ./modules/qemu-arch-vm.nix
           # ./modules/sway-git.nix
+	  nvim-dependencies.home-manager-module
         ];
 
         # Optionally use extraSpecialArgs

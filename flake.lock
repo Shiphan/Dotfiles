@@ -36,10 +36,31 @@
         "type": "github"
       }
     },
+    "nvim-dependencies": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751383194,
+        "narHash": "sha256-auH1V2WLFnlm5YKSbtFh3ZtKWm2Kmkio0ZG4CCiDSCA=",
+        "ref": "refs/heads/main",
+        "rev": "4cc208b53a75df2c398ae9b83ae7d21aee351b20",
+        "revCount": 1,
+        "type": "git",
+        "url": "file://git:/home/shiphan/.config/nvim"
+      },
+      "original": {
+        "type": "git",
+        "url": "file://git:/home/shiphan/.config/nvim"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nvim-dependencies": "nvim-dependencies"
       }
     }
   },
