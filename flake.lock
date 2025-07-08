@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751239699,
-        "narHash": "sha256-zA1uUdAq3c26fHm26xMWMuF5COhI18EzaH7az/P2OWM=",
+        "lastModified": 1751760902,
+        "narHash": "sha256-qBGNn7T/zOgUDQTo/RM/D2oxMkB2x36j3ajvpVanEVs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f6deff178cc4d6049d30785dbfc831e6c6e3a219",
+        "rev": "8b0180dde1d6f4cf632e046309e8f963924dfbd0",
         "type": "github"
       },
       "original": {
@@ -22,11 +22,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1751011381,
-        "narHash": "sha256-krGXKxvkBhnrSC/kGBmg5MyupUUT5R6IBCLEzx9jhMM=",
+        "lastModified": 1751637120,
+        "narHash": "sha256-xVNy/XopSfIG9c46nRmPaKfH1Gn/56vQ8++xWA8itO4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "30e2e2857ba47844aa71991daa6ed1fc678bcbb7",
+        "rev": "5c724ed1388e53cc231ed98330a60eb2f7be4be3",
         "type": "github"
       },
       "original": {
@@ -43,11 +43,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751383194,
-        "narHash": "sha256-auH1V2WLFnlm5YKSbtFh3ZtKWm2Kmkio0ZG4CCiDSCA=",
+        "lastModified": 1751707407,
+        "narHash": "sha256-ag+0Jhlj2rWFvBq/y41HJWF4auSjL0JYE3fox255I7E=",
         "ref": "refs/heads/main",
-        "rev": "4cc208b53a75df2c398ae9b83ae7d21aee351b20",
-        "revCount": 1,
+        "rev": "520e55920f5a3c00251dd94eb3775d0f496f10b0",
+        "revCount": 11,
         "type": "git",
         "url": "file://git:/home/shiphan/.config/nvim"
       },
