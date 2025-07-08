@@ -16,13 +16,17 @@
         serif = [
           "Noto Serif"
           "Noto Serif CJK"
+          "NotoSerif Nerd Font"
         ];
         sansSerif = [
           "Noto Sans"
           "Noto Sans CJK"
           "NotoSans Nerd Font"
         ];
-        monospace = [ "Noto Sans Mono" ];
+        monospace = [
+	  "Noto Sans Mono"
+	  "NotoSansM Nerd Font Mono"
+	];
       };
     };
   };
