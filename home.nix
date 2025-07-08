@@ -103,6 +103,10 @@
   ];
 
   xdg.enable = true;
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
