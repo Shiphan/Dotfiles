@@ -24,9 +24,9 @@
           "NotoSans Nerd Font"
         ];
         monospace = [
-	  "Noto Sans Mono"
-	  "NotoSansM Nerd Font Mono"
-	];
+          "Noto Sans Mono"
+          "NotoSansM Nerd Font Mono"
+        ];
       };
     };
   };

@@ -23,7 +23,12 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, nvim-dependencies, ... }@args:
+    {
+      nixpkgs,
+      home-manager,
+      nvim-dependencies,
+      ...
+    }@args:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -45,13 +50,13 @@
           ./modules/qemu-windows-vm.nix
           ./modules/qemu-arch-vm.nix
           # ./modules/sway-git.nix
-	  nvim-dependencies.home-manager-module
+          nvim-dependencies.home-manager-module
         ];
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
         extraSpecialArgs = args;
       };
-      formatter.${system} = pkgs.nixfmt-rfc-style;
+      formatter.${system} = pkgs.nixfmt-tree;
     };
 }

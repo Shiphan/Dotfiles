@@ -27,6 +27,6 @@
           # args.nixos-hardware.nixosModules.framework-13-7040-amd
         ];
       };
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
     };
 }
