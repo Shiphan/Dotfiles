@@ -3,6 +3,7 @@
   lib,
   pkgs,
   # firefox-nightly,
+  stable-nixpkgs,
   self-pkgs,
   ...
 }:
@@ -67,7 +68,8 @@
     # davinci-resolve
     godot
     kicad
-    freecad-qt6
+    stable-nixpkgs.legacyPackages."x86_64-linux".freecad-qt6
+    # freecad-qt6
     openscad
 
     flatpak
@@ -82,7 +84,7 @@
     discord
 
     vscodium
-    jetbrains.idea-community
+    # jetbrains.idea-community
     android-studio
     arduino-ide
 

@@ -4,6 +4,7 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    stable-nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     # nixpkgs-latest.url = "github:nixos/nixpkgs/master";
     home-manager = {
       url = "github:nix-community/home-manager";
