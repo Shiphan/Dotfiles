@@ -11,6 +11,7 @@
     pulseaudio
     pwvucontrol
     networkmanagerapplet
+    better-control
 
     vlc
     nautilus

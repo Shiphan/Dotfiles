@@ -32,31 +32,31 @@
 
 			(powermenu-button
 				:mode-name "lock"
-				:icon ""
+				:icon "󰌿"
 				:display-name "Lock"
 				:onclick `pidof hyprlock || hyprlock`
 			)
 			(powermenu-button
 				:mode-name "suspend"
-				:icon ""
+				:icon "󰏥"
 				:display-name "Suspend"
 				:onclick `systemctl suspend-then-hibernate`
 			)
 			(powermenu-button
 				:mode-name "hibernate"
-				:icon ""
+				:icon "󰤄"
 				:display-name "Hibernate"
 				:onclick `systemctl hibernate`
 			)
 			(powermenu-button
 				:mode-name "reboot"
-				:icon ""
+				:icon "󰜉"
 				:display-name "Reboot"
 				:onclick `reboot`
 			)
 			(powermenu-button
 				:mode-name "shutdown"
-				:icon ""
+				:icon "󰐥"
 				:display-name "Shutdown"
 				:onclick `shutdown now`
 			)

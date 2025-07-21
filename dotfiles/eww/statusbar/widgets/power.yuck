@@ -13,25 +13,24 @@
         (stack
             :transition "slidedown"
             :same-size false
-            :selected {EWW_BATTERY == "" ? 0 : 1}
+            :selected {EWW_BATTERY == "{}" ? 0 : 1}
 
-            ""
+            "󱐥 "
             (box
                 :space-evenly false
 
                 (stack
-
+                    :class "ms-font"
                     :transition "slidedown"
                     :same-size true
-                    :selected {EWW_BATTERY.BAT1.status == "Charging" ? 1 : 0}
+                    :selected {EWW_BATTERY["BAT1"].status == "Charging" ? 1 : 0}
 
                     (battery)
                     (charging)
                 )
-                ;{EWW_BATTERY.BAT1.capacity}
                 (digitsdisplay
                     :transition "slidedown"
-                    :value {EWW_BATTERY.BAT1.capacity}
+                    :value {EWW_BATTERY["BAT1"].capacity}
                 )
             )
         )
@@ -42,16 +41,32 @@
     (stack
         :transition "slidedown"
         :same-size true
-        :selected batterylevel
+        :selected {floor(EWW_BATTERY["BAT1"].capacity / 10)}
 
+        ""
         ""
         ""
         ""
+        ""
         ""
+        ""
         ""
         ""
         ""
         ""
+
+        ;nerd font version
+        ;"󰂎 "
+        ;"󰁺 "
+        ;"󰁻 "
+        ;"󰁼 "
+        ;"󰁽 "
+        ;"󰁾 "
+        ;"󰁿 "
+        ;"󰂀 "
+        ;"󰂁 "
+        ;"󰂂 "
+        ;"󰁹 "
     )
 )
 
@@ -59,15 +74,30 @@
     (stack
         :transition "slidedown"
         :same-size true
-        :selected batterylevel
+        :selected {floor(EWW_BATTERY["BAT1"].capacity / 10)}
 
+        ""
         ""
         ""
         ""
+        ""
         ""
+        ""
         ""
         ""
         ""
         ""
+
+        ;"󰢟 "
+        ;"󰢜 "
+        ;"󰂆 "
+        ;"󰂇 "
+        ;"󰂈 "
+        ;"󰢝 "
+        ;"󰂉 "
+        ;"󰢞 "
+        ;"󰂊 "
+        ;"󰂋 "
+        ;"󰂅 "
     )
 )

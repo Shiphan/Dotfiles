@@ -42,10 +42,10 @@
 					:halign "start"
 					:selected {volume.muted ? 0 : (volume.level + 1)}
 
-					""
-					""
-					""
-					""
+					"󰖁"
+					"󰕿"
+					"󰖀"
+					"󰕾"
 				)
 				(scale
 					:min 0
@@ -115,7 +115,7 @@
 				(stack
 					:same-size true
 					:halign "start"
-					:selected {brightness > 60 ? (brightness > 165 ? 2 : 1) : 0}
+					:selected {brightness > 50 ? 2 : brightness > 25 ? 1 : 0}
 
 					""
 					""
@@ -123,13 +123,13 @@
 				)
 				(scale
 					:min 0
-					:max 255
+					:max 100
 					:value brightness
 				)
 				brightness
 			)
 			(box
-				:class "powerprofiles"
+				:class "powerprofiles ms-font"
 				:orientation "vertical"
 				:space-evenly false
 

@@ -1,7 +1,8 @@
 (defwidget powerprofile []
     (stack
+        :class "ms-font"
         :transition "slidedown"
-        :selected {(power-profile == "performance") ? 3 : (power-profile == "balanced" ? 2 : (power-profile == "power-saver" ? 1 : 0))}
+        :selected {`{"power-saver": 1, "balanced": 2, "performance": 3}`[power-profile] ?: 0}
 
         ""
         ""

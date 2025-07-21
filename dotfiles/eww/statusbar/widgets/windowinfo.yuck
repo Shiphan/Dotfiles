@@ -3,26 +3,26 @@
 )
 (defwidget windowinfo []
 	(box
-		:class "widget"
-		:space-evenly true
+		:class "widget ${(windowinfojson.xwayland ?: false) ? "" : "color-wayland"}"
+		;:space-evenly false
 		:spacing 2
 
 		(label
-			:class "nerd-font"
-			:text {(windowinfojson.xwayland ?: false) ? " " : " "}
+			:class {(windowinfojson.xwayland ?: false) ? "" : "color-wayland"} ; TODO: why the color need to set at box level up there
+			:text {(windowinfojson.xwayland ?: false) ? "" : ""}
 		)
-		(stack
-			:selected {(windowinfojson.class ?: "") == "" ? 3 :
-				windowinfojson.fullscreen == 1 ? 0 :
-				windowinfojson.floating ? 1 :
-				2
-			}
+		;(stack
+		;	:selected {(windowinfojson.class ?: "") == "" ? 3 :
+		;		windowinfojson.fullscreen == 1 ? 0 :
+		;		windowinfojson.floating ? 1 :
+		;		2
+		;	}
 
-			""
-			""
-			""
-			""
-		)
+		;	""
+		;	""
+		;	""
+		;	""
+		;)
 		;{windowinfojson.title}
 	)
 )

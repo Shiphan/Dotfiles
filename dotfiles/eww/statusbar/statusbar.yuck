@@ -4,7 +4,6 @@
 		:x "0%"
 		:y "0%"
 		:width "100%"
-		;:width "127.65957446808%"
 		:height "10px"
 		:anchor "top center"
 	)
@@ -40,10 +39,10 @@
 		:spacing 4
 
 		(button
-			:class "widget"
+			:class "widget color-nix"
 			:onclick `eww update powermenu-mode="normal"; eww open powermenu`
 
-			""
+			""
 		)
 		(power)
 		(clock)
@@ -101,7 +100,7 @@
 			:class "widget"
 			:onclick `dunstctl history-pop`
 
-			""
+			"󰂚"
 		)
 	)
 )

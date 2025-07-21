@@ -13,7 +13,7 @@
             :transition "slidedown"
             :selected {volume.muted ? 0 : 1}
 
-            ""
+            "󰖁"
             (box
                 :space-evenly false
 
@@ -22,9 +22,9 @@
                     :halign "start"
                     :selected {volume.level}
 
-                    ""
-                    ""
-                    ""
+                    "󰕿 "
+                    "󰖀 "
+                    "󰕾 "
                 )
                 ;{volume.value}
                 (digitsdisplay
