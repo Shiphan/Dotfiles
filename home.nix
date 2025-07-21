@@ -103,6 +103,9 @@
     # self-pkgs.wdi
     tmux
     zellij
+    typst
+
+    gemini-cli
   ];
 
   xdg.enable = true;
