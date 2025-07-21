@@ -1,0 +1,11 @@
+[general]
+
+[window]
+dynamic_padding = true
+opacity = 0.85
+
+[font]
+normal.family = "NotoSansM Nerd Font"
+# offset = { x = 0, y = 0 }
+# builtin_box_drawing = false
+
