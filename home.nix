@@ -3,6 +3,7 @@
   lib,
   pkgs,
   # firefox-nightly,
+  self-pkgs,
   ...
 }:
 
@@ -30,7 +31,7 @@
         fcitx5-lua
         # fcitx5-tokyonight
         fcitx5-nord
-        # (callPackage ./pkgs/fcitx5-mcbopomofo.nix { })
+        self-pkgs.fcitx5-mcbopomofo
         fcitx5-mcbopomofo
       ];
     };
@@ -97,7 +98,7 @@
     gradle
     nushell
     inetutils
-    # (callPackage ./pkgs/wdi.nix { })
+    # self-pkgs.wdi
     tmux
     zellij
   ];

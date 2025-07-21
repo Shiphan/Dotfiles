@@ -24,6 +24,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       home-manager,
       nvim-dependencies,
@@ -32,6 +33,7 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      self-pkgs = self.packages.${system};
     in
     {
       homeConfigurations."shiphan" = home-manager.lib.homeManagerConfiguration {
@@ -55,8 +57,17 @@
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-        extraSpecialArgs = args;
+        extraSpecialArgs = args // {inherit self-pkgs;};
       };
+      packages.${system} =
+        let
+          inherit (pkgs) callPackage;
+        in
+        {
+          fcitx5-mcbopomofo = callPackage ./pkgs/fcitx5-mcbopomofo.nix { };
+          snackdaemon = callPackage ./pkgs/snackdaemon.nix { };
+          wdi = callPackage ./pkgs/wdi.nix { };
+        };
       formatter.${system} = pkgs.nixfmt-tree;
     };
 }

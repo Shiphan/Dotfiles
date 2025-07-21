@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, self-pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -40,6 +40,6 @@
     cliphist
     playerctl
     brightnessctl
-    (callPackage ../pkgs/snackdaemon.nix { })
+    self-pkgs.snackdaemon
   ];
 }
