@@ -66,6 +66,8 @@
         in
         {
           fcitx5-mcbopomofo = callPackage ./pkgs/fcitx5-mcbopomofo.nix { };
+          fontc = callPackage ./pkgs/fontc/package.nix { };
+          googlesans-code = callPackage ./pkgs/googlesans-code.nix { fontc = self.packages.${system}.fontc; };
           snackdaemon = callPackage ./pkgs/snackdaemon.nix { };
           wdi = callPackage ./pkgs/wdi.nix { };
         };

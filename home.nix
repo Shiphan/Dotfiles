@@ -106,6 +106,8 @@
     typst
 
     gemini-cli
+
+    self-pkgs.googlesans-code
   ];
 
   xdg.enable = true;
@@ -126,6 +128,8 @@
       "kde"
     ];
   };
+
+  fonts.fontconfig.enable = true;
 
   services = {
     blueman-applet.enable = true;

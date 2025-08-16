@@ -18,6 +18,7 @@ config.window_content_alignment = {
 -- config.enable_scroll_bar = true
 
 config.font = wezterm.font_with_fallback({
+	"Google Sans Code",
 	"Noto Sans Mono",
 	"Noto Sans CJK TC",
 })
