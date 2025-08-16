@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-device="wlan0"
+device="wlp1s0"
 
 printInfo(){
 	jq -nc \
