@@ -84,11 +84,13 @@
     discord
 
     vscodium
-    # jetbrains.idea-community
+    jetbrains.idea-community
     android-studio
     arduino-ide
+    zed-editor
 
     # rustup
+    lld
     podman-desktop
     podman-compose
     btop
