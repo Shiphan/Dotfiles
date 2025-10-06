@@ -27,7 +27,7 @@
 		)
 		(box
 			:orientation "horizontal"
-			:space-evenly false
+			:space-evenly true
 			:spacing 20
 
 			(powermenu-button
