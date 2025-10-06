@@ -99,6 +99,7 @@
     wget
     glib
     gnumake
+    zip
     unzip
     ripgrep
     gdb
