@@ -26,7 +26,7 @@ getinfo(){
 
 getinfo
 pactl subscribe | while read -r line ; do
-	if [[ $line =~ "Event 'change' on sink " ]] ; then
+	if [[ $line =~ "Event 'change' on sink " ]] || [[ $line =~ "Event 'new' on sink" ]] || [[ $line =~ "Event 'remove' on sink" ]] ; then
 		getinfo
 	fi
 done
