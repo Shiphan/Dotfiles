@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 active=$(powerprofilesctl get)
 if [[ $1 == "prev" ]] ; then
 	prev=true
