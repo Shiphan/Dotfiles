@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755313937,
-        "narHash": "sha256-pQb7bNcolxYGRiylUCrTddiF+qW2wsUiM9+eRIDUrVU=",
+        "lastModified": 1758288820,
+        "narHash": "sha256-ubyO7Ly6NSFN5GgNTEuoIavBFMZOMcRchSTIXiDVtAI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2a749f4790a14f7168be67cdf6e548ef1c944e10",
+        "rev": "e38751933802481b37fee1f9251cbb86e63df381",
         "type": "github"
       },
       "original": {
@@ -22,11 +22,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1755186698,
-        "narHash": "sha256-wNO3+Ks2jZJ4nTHMuks+cxAiVBGNuEBXsT29Bz6HASo=",
+        "lastModified": 1758198701,
+        "narHash": "sha256-7To75JlpekfUmdkUZewnT6MoBANS0XVypW6kjUOXQwc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fbcf476f790d8a217c3eab4e12033dc4a0f6d23c",
+        "rev": "0147c2f1d54b30b5dd6d4a8c8542e8d7edf93b5d",
         "type": "github"
       },
       "original": {
@@ -43,11 +43,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754128671,
-        "narHash": "sha256-U2g8I/p2nh0ndLlmYcrr6CxRPbubgPqwh+2ZQMyJnSY=",
+        "lastModified": 1758286822,
+        "narHash": "sha256-qsSpGp0GYGhWm3veNFjGOFtstb6HV7P5hyLrVs+RE/c=",
         "ref": "refs/heads/main",
-        "rev": "e7dd0701ce922ee62b86781589d4363bf4404ed8",
-        "revCount": 23,
+        "rev": "8a55b7a1b81bd8fc207fcc893d96eab2b736bbc6",
+        "revCount": 31,
         "type": "git",
         "url": "file://git:/home/shiphan/.config/nvim"
       },
@@ -60,24 +60,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nvim-dependencies": "nvim-dependencies",
-        "stable-nixpkgs": "stable-nixpkgs"
-      }
-    },
-    "stable-nixpkgs": {
-      "locked": {
-        "lastModified": 1755274400,
-        "narHash": "sha256-rTInmnp/xYrfcMZyFMH3kc8oko5zYfxsowaLv1LVobY=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "ad7196ae55c295f53a7d1ec39e4a06d922f3b899",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-25.05",
-        "repo": "nixpkgs",
-        "type": "github"
+        "nvim-dependencies": "nvim-dependencies"
       }
     }
   },
