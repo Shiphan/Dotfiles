@@ -7,7 +7,7 @@
     alacritty
     # ghostty
 
-    rofi-wayland
+    rofi
     pulseaudio
     pwvucontrol
     networkmanagerapplet

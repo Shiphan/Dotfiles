@@ -2,10 +2,13 @@
 
 {
   home.packages = with pkgs; [
+    nushell
+
     figlet
   ];
   home.shellAliases = {
     "ls" = "ls --color=auto";
+    ".." = "cd ..";
     "grep" = "grep --color=auto";
     "ll" = "ls -lh";
     "lla" = "ls -lha";
@@ -89,6 +92,9 @@
         figlet -t -f smslant " NixOS  $(date +"%I:%M %p")"
         echo
       '';
+    };
+    fish = {
+      enable = true;
     };
   };
 }

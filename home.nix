@@ -3,7 +3,6 @@
   lib,
   pkgs,
   # firefox-nightly,
-  stable-nixpkgs,
   self-pkgs,
   ...
 }:
@@ -32,7 +31,7 @@
         fcitx5-lua
         # fcitx5-tokyonight
         fcitx5-nord
-        self-pkgs.fcitx5-mcbopomofo
+        # self-pkgs.fcitx5-mcbopomofo
         fcitx5-mcbopomofo
       ];
     };
@@ -55,6 +54,8 @@
     # args.firefox-nightly.packages.${pkgs.system}.firefox-nightly
     chromium
     google-chrome
+    ladybird
+    # servo
 
     kdePackages.filelight # check disk usage
     gparted
@@ -68,8 +69,7 @@
     # davinci-resolve
     godot
     kicad
-    stable-nixpkgs.legacyPackages."x86_64-linux".freecad-qt6
-    # freecad-qt6
+    freecad
     openscad
 
     flatpak
@@ -93,14 +93,13 @@
     lld
     podman-desktop
     podman-compose
-    btop
+    btop-rocm
     nvtopPackages.amd
     cloc
     arduino-cli
     yt-dlp
     nodejs
     gradle
-    nushell
     inetutils
     # self-pkgs.wdi
     tmux
@@ -109,7 +108,8 @@
 
     gemini-cli
 
-    self-pkgs.googlesans-code
+    # self-pkgs.googlesans-code
+    googlesans-code
   ];
 
   xdg.enable = true;
