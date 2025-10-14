@@ -15,6 +15,7 @@
       };
       extraConfig = {
         init.defaultBranch = "main";
+        merge.tool = "nvimdiff";
       };
     };
     gh = {
