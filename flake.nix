@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvim-dependencies = {
-      url = "git:/home/shiphan/.config/nvim";
+      url = "/home/shiphan/.config/nvim"; # TODO: this is now been recognized as a "path" not a git repo
       # url = "github:shiphan/nvim-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
