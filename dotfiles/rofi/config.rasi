@@ -1,6 +1,6 @@
 configuration {
 /*	modes: "window,drun,run,ssh";*/
-/*	font: "mono 12";*/
+	font: "Noto Sans 12";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
@@ -39,7 +39,7 @@ configuration {
 /*	filter: ;*/
 /*	dpi: -1;*/
 /*	threads: 0;*/
-/*	scroll-method: 0;*/
+	scroll-method: 1;
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	global-kb: false;*/
@@ -156,29 +156,34 @@ configuration {
 }
 
 * {
-    text-normal: rgba(200, 200, 200, 0.9);
+    text-normal: rgba(200, 200, 200, 1);
     text-selected: rgba(50, 50, 50, 0.9);
-    back-normal: rgba(50, 50, 50, 0.6);
+    back-normal: rgba(0, 0, 0, 1);
     back-urgent: rgba(255, 224, 26, 0.6);
-    back-selected: rgba(200, 200, 200, 0.6);
+    back-selected: rgba(255, 255, 255, 0.75);
     back-active: rgba(66, 245, 108, 0.6);
+    active-foreground: rgba(255, 255, 255, 0.9);
+    active-background: rgba(66, 245, 108, 0.9);
+    normal-foreground: rgba(200, 200, 200, 0.9);
+    foreground: rgba(200, 200, 200, 0.9);
+    separatorcolor: rgba(100, 100, 100, 0.3);
 }
 element {
-    padding: 4px ;
-    spacing: 8px ;
+    padding: 0.2em 0.32em;
+    spacing: 10px ;
     border:  0;
     cursor:  pointer;
-    border-radius: 6px;
+    border-radius: 0.46em;
 }
-element normal.normal {
+element normal.normal, element alternate.normal {
     background-color: var(back-normal);
     text-color:       var(text-normal);
 }
-element normal.urgent {
+element normal.urgent, element alternate.urgent {
     background-color: var(back-urgent);
     text-color:       var(text-normal);
 }
-element normal.active {
+element normal.active, element alternate.active {
     background-color: var(active-background);
     text-color:       var(active-foreground);
 }
@@ -193,18 +198,6 @@ element selected.urgent {
 element selected.active {
     background-color: var(back-active);
     text-color:       var(text-selected);
-}
-element alternate.normal {
-    background-color: var(back-normal);
-    text-color:       var(text-normal);
-}
-element alternate.urgent {
-    background-color: var(back-urgent);
-    text-color:       var(text-normal);
-}
-element alternate.active {
-    background-color: var(active-background);
-    text-color:       var(active-foreground);
 }
 element-text {
     background-color: rgba ( 0, 0, 0, 0 % );
@@ -221,8 +214,8 @@ element-icon {
 window {
     padding:          18px;
     background-color: #1A1B267f;
-    border:           2;
-    border-radius: 12px;
+    border:           0;
+    border-radius:    1em;
 }
 mainbox {
     padding: 0;
@@ -231,29 +224,30 @@ mainbox {
 message {
     padding:      1px ;
     border-color: var(separatorcolor);
-    border:       2px dash 0px 0px ;
+    border:       0;
 }
 textbox {
     text-color: var(foreground);
 }
 listview {
-    padding:      2px 0px 0px ;
+    padding:      16px 0px 0px ;
     scrollbar:    true;
     border-color: var(separatorcolor);
-    spacing:      4px ;
+    spacing:      0.2em;
     fixed-height: 0;
-    border:       2px dash 0px 0px ;
+    border:       0;
 }
 scrollbar {
     width:        4px ;
-    padding:      0;
+    padding:      0 0 0 0.4em;
     handle-width: 8px ;
     border:       0;
     handle-color: var(normal-foreground);
+    handle-rounded-corners: true;
 }
 sidebar {
     border-color: var(separatorcolor);
-    border:       2px dash 0px 0px ;
+    border:       0px 0px 0px 0px ;
 }
 button {
     spacing:    0;
@@ -266,7 +260,7 @@ button selected {
 }
 
 num-filtered-rows, num-rows {
-    text-color: grey;
+    text-color: var(normal-foreground);
     expand:     false;
 }
 textbox-num-sep {
