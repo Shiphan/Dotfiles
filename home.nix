@@ -30,7 +30,11 @@
       addons = with pkgs; [
         fcitx5-lua
         # fcitx5-tokyonight
-        fcitx5-nord
+        # fcitx5-nord
+        # fcitx5-mellow-themes
+        (catppuccin-fcitx5.override {
+          # withRoundedCorners = true;
+        })
         # self-pkgs.fcitx5-mcbopomofo
         fcitx5-mcbopomofo
       ];
