@@ -16,10 +16,8 @@
           email = "140245703+Shiphan@users.noreply.github.com";
           name = "Shiphan";
         };
-        extraConfig = {
-          init.defaultBranch = "main";
-          merge.tool = "nvimdiff";
-        };
+        init.defaultBranch = "main";
+        merge.tool = "nvimdiff";
       };
     };
     gh = {
