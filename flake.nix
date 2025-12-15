@@ -51,7 +51,6 @@
           # ./modules/firefox.nix
           ./modules/qemu-windows-vm.nix
           ./modules/qemu-arch-vm.nix
-          # ./modules/sway-git.nix
           nvim-dependencies.home-manager-module
         ];
 

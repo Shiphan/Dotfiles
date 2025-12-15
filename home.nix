@@ -44,9 +44,7 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
-      "google-chrome"
       "obsidian"
-      "discord"
       "android-studio-stable"
       # "davinci-resolve"
     ];
@@ -57,7 +55,6 @@
     firefox
     # args.firefox-nightly.packages.${pkgs.system}.firefox-nightly
     chromium
-    google-chrome
     ladybird
     # servo
 
@@ -83,9 +80,8 @@
     libreoffice
     obsidian
     # logseq
-    joplin-desktop
+    # joplin-desktop
     xournalpp
-    discord
 
     vscodium
     jetbrains.idea-community
