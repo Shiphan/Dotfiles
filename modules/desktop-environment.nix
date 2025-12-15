@@ -8,8 +8,10 @@
     # ghostty
 
     rofi
+    hyprlauncher
     pulseaudio
     pwvucontrol
+    hyprpwcenter
     networkmanagerapplet
     better-control
 
