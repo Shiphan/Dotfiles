@@ -19,5 +19,6 @@
       "rofi"
       "snackdaemon"
       "dunst"
+      "quickshell"
     ];
 }

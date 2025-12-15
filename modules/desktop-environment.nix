@@ -25,6 +25,7 @@
     kdePackages.qtsvg
 
     eww
+    quickshell
     hyprlock
     hyprpaper
     hyprsunset
