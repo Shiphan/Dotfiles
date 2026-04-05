@@ -1,0 +1,104 @@
+(include "./digitsdisplay.yuck")
+
+(defvar powermenu-mode "normal")
+(defwindow powermenu
+	:monitor 0
+	:geometry (geometry
+		:x "50%"
+		:y "0%"
+		:width "100%"
+		:height "100%"
+		:anchor "bottom center"
+	)
+	:stacking "overlay"
+	:exclusive false
+	:focusable false
+	:namespace "ewwPowerMenu"
+
+	(overlay
+		:vexpand true
+		:hexpand true
+
+		(eventbox
+			:vexpand true
+			:hexpand true
+			:onclick {powermenu-mode == "normal" ? `${EWW_CMD} close powermenu` : `${EWW_CMD} update powermenu-mode="normal"`}
+			:onmiddleclick {powermenu-mode == "normal" ? `${EWW_CMD} close powermenu` : `${EWW_CMD} update powermenu-mode="normal"`}
+			:onrightclick {powermenu-mode == "normal" ? `${EWW_CMD} close powermenu` : `${EWW_CMD} update powermenu-mode="normal"`}
+		)
+		(box
+			:valign "center"
+			:halign "center"
+			:orientation "horizontal"
+			:space-evenly {powermenu-mode == "normal"}
+			:spacing 12
+
+			(button
+				:class "wrapper back"
+				:visible {powermenu-mode != "normal"}
+				:onclick `${EWW_CMD} update powermenu-mode="normal"`
+				:onmiddleclick `${EWW_CMD} update powermenu-mode="normal"`
+				:onrightclick `${EWW_CMD} update powermenu-mode="normal"`
+				:halign "center"
+
+				(label
+					:class "ms-font"
+					:text ""
+				)
+			)
+			(powermenu-button
+				:mode-name "lock"
+				:icon ""
+				:display-name "Lock"
+				:onclick `pidof hyprlock || hyprlock`
+			)
+			(powermenu-button
+				:mode-name "suspend"
+				:icon ""
+				:display-name "Suspend"
+				:onclick `systemctl suspend-then-hibernate`
+			)
+			(powermenu-button
+				:mode-name "hibernate"
+				:icon ""
+				:display-name "Hibernate"
+				:onclick `systemctl hibernate`
+			)
+			(powermenu-button
+				:mode-name "reboot"
+				:icon ""
+				:display-name "Reboot"
+				:onclick `reboot`
+			)
+			(powermenu-button
+				:mode-name "shutdown"
+				:icon ""
+				:display-name "Shutdown"
+				:onclick `shutdown now`
+			)
+		)
+	)
+)
+
+(defwidget powermenu-button [mode-name icon display-name onclick]
+	(button
+		:visible {powermenu-mode == "normal" || powermenu-mode == mode-name}
+		:onclick {powermenu-mode == mode-name ? `${EWW_CMD} close powermenu; ${onclick}` : `${EWW_CMD} update powermenu-mode="${mode-name}"`}
+
+		(box
+			:class "wrapper option"
+			:orientation {powermenu-mode == mode-name ? "horizontal" : "vertical"}
+			:space-evenly false
+
+			(label
+				:class "icon ms-font ${powermenu-mode == mode-name ? "icon-h" : "icon-v"}"
+				:text icon
+			)
+			(label
+				:visible {powermenu-mode == mode-name}
+				:class "text"
+				:text display-name
+			)
+		)
+	)
+)

@@ -14,6 +14,10 @@
       # url = "github:shiphan/nvim-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kde-svg-cursor2hyprcursor = {
+      url = "github:Shiphan/kde-svg-cursor2hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     /*
       firefox-nightly = {
         url = "github:nix-community/flake-firefox-nightly";
@@ -28,12 +32,14 @@
       nixpkgs,
       home-manager,
       nvim-dependencies,
+      kde-svg-cursor2hyprcursor,
       ...
     }@args:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       self-pkgs = self.packages.${system};
+      kde-svg-cursor2hyprcursor-pkgs = kde-svg-cursor2hyprcursor.packages.${system};
     in
     {
       homeConfigurations."shiphan" = home-manager.lib.homeManagerConfiguration {
@@ -47,7 +53,7 @@
           ./modules/shell.nix
           ./modules/desktop-environment.nix
           ./modules/git.nix
-          ./modules/dotfiles.nix
+          ./modules/xdg-config-home.nix
           # ./modules/firefox.nix
           ./modules/qemu-windows-vm.nix
           ./modules/qemu-arch-vm.nix
@@ -57,7 +63,7 @@
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
         extraSpecialArgs = args // {
-          inherit self-pkgs;
+          inherit self-pkgs kde-svg-cursor2hyprcursor-pkgs;
         };
       };
       packages.${system} =

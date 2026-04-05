@@ -1,9 +1,0 @@
-(defwidget clock []
-    (box
-        :class "widget"
-        :space-evenly false
-
-        {`["󱐿 ", "󱑀 ", "󱑁 ", "󱑃 ", "󱑂 ", "󱑄 ", "󱑅 ", "󱑆 ", "󱑇 ", "󱑈 ", "󱑉 ", "󱑊 "]`[formattime(EWW_TIME, "%-l") - 1]}
-        {formattime(EWW_TIME, "%-m/%-d %a %-l:%M %p")}
-    )
-)

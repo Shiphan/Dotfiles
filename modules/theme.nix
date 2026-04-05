@@ -1,38 +1,32 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  kde-svg-cursor2hyprcursor-pkgs,
+  ...
+}:
 
 {
-  # TODO: cursor in gnome gtk app is bigger
   home.pointerCursor = {
-    name = "Breeze_Light";
+    name = "Breeze Light";
+    # name = "Breeze Dark";
     size = 24;
-    package = (
-      pkgs.stdenv.mkDerivation {
-        name = "breeze-hyprcursor";
-        src = pkgs.kdePackages.breeze;
-        nativeBuildInputs = with pkgs; [
-          hyprcursor
-          xcur2png
-        ];
-        installPhase = ''
-          hyprcursor-util --extract share/icons/Breeze_Light --output .
-          sed -i 1s/Extracted\ Theme/Breeze_Light/g extracted_Breeze_Light/manifest.hl
-          mkdir target
-          hyprcursor-util --create extracted_Breeze_Light --output target
-          mkdir -p $out/share/icons
-          mv target/theme_Breeze_Light $out/share/icons/Breeze_Light
-          ln -s ${pkgs.kdePackages.breeze}/share/icons/Breeze_Light/* $out/share/icons/Breeze_Light/
-        '';
-      }
-    );
+    package = kde-svg-cursor2hyprcursor-pkgs.breeze-light-hyprcursor;
     gtk.enable = true;
     x11.enable = true;
     hyprcursor.enable = true;
   };
+  home.packages = [
+    kde-svg-cursor2hyprcursor-pkgs.breeze-dark-hyprcursor
+    kde-svg-cursor2hyprcursor-pkgs.breeze-light-hyprcursor
+  ];
 
   dconf = {
     enable = true;
     settings = {
-      "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+      "org/gnome/desktop/interface" = {
+        # color-scheme = "prefer-dark";
+        accent-color = "green";
+      };
       # "org/gnome/desktop/wm/preferences".button-layout= "menu:close";
     };
   };
@@ -42,28 +36,32 @@
       name = "Adwaita";
       package = pkgs.gnome-themes-extra;
     };
+    colorScheme = "dark";
     gtk2.extraConfig = ''
       gtk-application-prefer-dark-theme = true;
     '';
-    gtk3.extraConfig = {
-      "gtk-application-prefer-dark-theme" = true;
-      "gtk-decoration-layout" = "menu:close";
+    gtk3 = {
+      extraConfig = {
+        "gtk-decoration-layout" = "menu:close";
+      };
     };
-    # FIXME: close button theme
+    gtk4 = {
+      theme = config.gtk.theme;
+    };
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
     };
   };
+  # TODO: still don't know how to use breeze dark
   qt = {
     enable = true;
-    # platformTheme.name = "qtct";
+    platformTheme.name = "kde";
     style = {
       name = "breeze";
       package = with pkgs; [
-        # adwaita-qt
-        # adwaita-qt6
         kdePackages.breeze
+        kdePackages.breeze-icons
         # libsForQt5.breeze-qt5
       ];
     };

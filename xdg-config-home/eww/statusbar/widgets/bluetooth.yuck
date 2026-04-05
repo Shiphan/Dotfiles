@@ -1,0 +1,26 @@
+(deflisten bluetooth-info
+    `./statusbar/scripts/get-bluetooth-state.nu`
+)
+
+(defwidget bluetooth []
+    (button
+        :onclick "./statusbar/scripts/open-blueman-manager.sh"
+
+        (stack
+            :same-size true
+            :selected {bluetooth-info.enabled ?
+                bluetooth-info.searching ?
+                    2 :
+                    bluetooth-info.connected ?
+                        3 :
+                        1 :
+                0
+            }
+
+            ""
+            ""
+            ""
+            ""
+        )
+    )
+)

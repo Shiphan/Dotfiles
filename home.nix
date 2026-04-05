@@ -32,11 +32,12 @@
         # fcitx5-tokyonight
         # fcitx5-nord
         # fcitx5-mellow-themes
-        (catppuccin-fcitx5.override {
-          # withRoundedCorners = true;
-        })
-        # self-pkgs.fcitx5-mcbopomofo
-        fcitx5-mcbopomofo
+        catppuccin-fcitx5
+        # (catppuccin-fcitx5.override {
+        #   withRoundedCorners = true;
+        # })
+        self-pkgs.fcitx5-mcbopomofo
+        # fcitx5-mcbopomofo
       ];
     };
   };
@@ -44,8 +45,7 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
-      "obsidian"
-      "android-studio-stable"
+      "android-studio"
       # "davinci-resolve"
     ];
 
@@ -55,18 +55,23 @@
     firefox
     # args.firefox-nightly.packages.${pkgs.system}.firefox-nightly
     chromium
-    ladybird
+    # ladybird
     # servo
+
+    thunderbird
+    kdePackages.konversation
 
     kdePackages.filelight # check disk usage
     gparted
+    smartmontools
+    gnome-disk-utility
 
-    blender-hip
+    pkgsRocm.blender
     gimp3
     krita
     inkscape
     obs-studio
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     # davinci-resolve
     godot
     kicad
@@ -78,20 +83,23 @@
     kdePackages.discover
 
     libreoffice
-    obsidian
     # logseq
     # joplin-desktop
     xournalpp
+    kdePackages.okular
 
     vscodium
-    jetbrains.idea-community
+    # jetbrains.idea-oss
     android-studio
-    arduino-ide
+    # arduino-ide
     zed-editor
+    kdePackages.kate
+    emacs-pgtk
+    # neovide
 
     # rustup
     lld
-    podman-desktop
+    podman-tui
     podman-compose
     btop-rocm
     nvtopPackages.amd
@@ -105,8 +113,13 @@
     tmux
     zellij
     typst
+    android-tools
+    scrcpy
+
+    monero-cli
 
     gemini-cli
+    opencode
 
     # self-pkgs.googlesans-code
     googlesans-code
@@ -116,6 +129,7 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = true;
   };
   xdg.portal = {
     enable = true;
@@ -123,12 +137,20 @@
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
       kdePackages.xdg-desktop-portal-kde
+      xdg-desktop-portal-luminous
     ];
-    config.common.default = [
-      "hyprland"
-      "gtk"
-      "kde"
-    ];
+    config.common = {
+      default = [
+        "hyprland"
+        "gtk"
+        "kde"
+      ];
+      "org.freedesktop.impl.portal.Settings" = [
+        "hyprland"
+        "luminous"
+        "gtk"
+      ];
+    };
   };
 
   fonts.fontconfig.enable = true;

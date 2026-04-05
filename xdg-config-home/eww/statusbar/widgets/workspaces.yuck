@@ -1,0 +1,47 @@
+(deflisten workspaces
+    "./statusbar/scripts/get-workspaces.nu"
+)
+
+(defwidget workspaces []
+    (eventbox
+        :onscroll "./statusbar/scripts/change-active-workspace.nu {} ${workspaces.active.spaceId}"
+
+        (box 
+            :class "widget"
+            :space-evenly false
+            :spacing 8
+
+            (box
+                :space-evenly false
+                :spacing 8
+                :visible {workspaces.special_workspaces != "[]"}
+
+                (for specialspace in {workspaces.special_workspaces}
+                    (label
+                        :unindent false
+                        :class {workspaces.active_special_id == specialspace.id ? "current" : ""}
+                        :text {workspaces.active_special_id == specialspace.id
+                            ? " > ${specialspace.name =~ "^special:.*$" ? substring(specialspace.name, 8, strlength(specialspace.name) - 8) : specialspace.name} < "
+                            : specialspace.name =~ "^special:.*$" ? substring(specialspace.name, 8, strlength(specialspace.name) - 8) : specialspace.name}
+                    )
+                )
+            )
+            (box
+                :space-evenly false
+                :spacing 8
+
+                (for workspace in {workspaces.workspaces}
+                    (eventbox
+                        :onclick "hyprctl dispatch workspace ${workspace.id}"
+
+                        (label
+                            :unindent false
+                            :class {workspaces.active_id == workspace.id ? "current" : ""}
+                            :text {workspaces.active_id == workspace.id ? " > ${workspace.name} < " : workspace.name}
+                        )
+                    )
+                )
+            )
+        )
+    )
+)

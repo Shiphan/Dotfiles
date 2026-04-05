@@ -24,7 +24,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Wherein we pursue oxidizing fontmake";
     homepage = "https://github.com/googlefonts/fontc";
-    changelog = "https://github.com/googlefonts/fontc/releases/tag/${finalAttrs.src.tag}";
+    changelog = "https://github.com/googlefonts/fontc/releases/tag/fontc-v${finalAttrs.version}";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ shiphan ];
     mainProgram = "fontc";

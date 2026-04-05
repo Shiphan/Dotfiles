@@ -12,12 +12,13 @@
         # key = builtins.readFile (config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.ssh/id_ed25519");
       };
       settings = {
+        core.quotepath = false;
+        init.defaultBranch = "main";
+        merge.tool = "nvimdiff";
         user = {
           email = "140245703+Shiphan@users.noreply.github.com";
           name = "Shiphan";
         };
-        init.defaultBranch = "main";
-        merge.tool = "nvimdiff";
       };
     };
     gh = {

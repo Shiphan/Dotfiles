@@ -1,0 +1,15 @@
+(deflisten power-profile
+    `./statusbar/scripts/get-power-profile.nu`
+)
+(defwidget powerprofile []
+    (stack
+        :class "ms-font"
+        :transition "slidedown"
+        :selected {`{"power-saver": 1, "balanced": 2, "performance": 3}`[power-profile] ?: 0}
+
+        ""
+        ""
+        ""
+        ""
+    )
+)

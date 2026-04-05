@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765682243,
-        "narHash": "sha256-yeCxFV/905Wr91yKt5zrVvK6O2CVXWRMSrxqlAZnLp0=",
+        "lastModified": 1775104157,
+        "narHash": "sha256-rm/7k0D2J9SP30pyZ2C1HqarDncZDN6KAUI0gzgg4TA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "58bf3ecb2d0bba7bdf363fc8a6c4d49b4d509d03",
+        "rev": "41e6e2ab37763c09db4e639033392cf40900440a",
         "type": "github"
       },
       "original": {
@@ -20,13 +20,33 @@
         "type": "github"
       }
     },
+    "kde-svg-cursor2hyprcursor": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772772553,
+        "narHash": "sha256-PE+vk62dti8gtzRFA9peT2qQWNIHpFg1csJC2bKIC3I=",
+        "owner": "Shiphan",
+        "repo": "kde-svg-cursor2hyprcursor",
+        "rev": "1b33bfbbccbc8aa500e8fa7e61acbe479bcd3f2b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Shiphan",
+        "repo": "kde-svg-cursor2hyprcursor",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1765472234,
-        "narHash": "sha256-9VvC20PJPsleGMewwcWYKGzDIyjckEz8uWmT0vCDYK0=",
+        "lastModified": 1775036866,
+        "narHash": "sha256-ZojAnPuCdy657PbTq5V0Y+AHKhZAIwSIT2cb8UgAz/U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2fbfb1d73d239d2402a8fe03963e37aab15abe8b",
+        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
         "type": "github"
       },
       "original": {
@@ -43,8 +63,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1765527864,
-        "narHash": "sha256-omlY99Lgo753qQhqMHMwJ94wNqsvfEynWbRqsmI4ylA=",
+        "lastModified": 1774960289,
+        "narHash": "sha256-1qoS1e/GP3n4RZGIQoZGXvH869maUaNCq7p2cSVaNiI=",
         "path": "/home/shiphan/.config/nvim",
         "type": "path"
       },
@@ -56,6 +76,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "kde-svg-cursor2hyprcursor": "kde-svg-cursor2hyprcursor",
         "nixpkgs": "nixpkgs",
         "nvim-dependencies": "nvim-dependencies"
       }

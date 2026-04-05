@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     nushell
+    nufmt
 
     figlet
   ];
@@ -50,6 +51,7 @@
     };
     zsh = {
       enable = true;
+      dotDir = "${config.xdg.configHome}/zsh";
       # defaultKeymap = "viins";
       enableCompletion = true;
       autosuggestion.enable = true;
@@ -92,9 +94,6 @@
         figlet -t -f smslant " NixOS  $(date +"%I:%M %p")"
         echo
       '';
-    };
-    fish = {
-      enable = true;
     };
   };
 }

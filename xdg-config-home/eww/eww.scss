@@ -1,0 +1,209 @@
+* {
+	all: initial;
+	font-size: large;
+	font-family: "Noto Sans", "NotoSans Nerd Font Propo",  sans-serif;
+}
+
+.statusbar {
+	// padding: 10px 10px 0;
+	padding: 4px;
+	background-color: transparent;
+
+	* {
+		all: initial;
+		font-size: large;
+		font-family: inherit;
+		background-color: transparent;
+	}
+
+	.widget {
+		background-color: black;
+		// background-color: rgba(200, 200, 200, 0.7);
+		// color: rgba(200, 200, 200, 0.9);
+		// color: rgba(50, 50, 50, 0.9);
+		padding: 2px 8px;
+		border-radius: 0.5em;
+
+		* {
+			background-color: transparent;
+			color: inherit;
+			padding: 0;
+			margin: 0;
+		}
+
+		.current {
+			background-color: rgba(100%, 100%, 100%, 0.75);
+			color: black;
+			border-radius: 0.5em;
+		}
+
+		menu {
+			background-color: rgba(50, 50, 50, 0.85);
+			color: rgba(200, 200, 200, 0.9);
+			padding: 2px 8px;
+			border-radius: 0.5em;
+		}
+	}
+}
+
+tooltip {
+	background-color: rgba(50, 50, 50, 0.85);
+	color: rgba(200, 200, 200, 0.9);
+	padding: 2px 8px;
+	border-radius: 0.5em;
+}
+
+.snackbar {
+	background-color: rgba(50, 50, 50, 0.6);
+	padding: 0.6em 0.8em;
+	border-radius: 0.8em;
+	color: rgba(200, 200, 200, 0.9);
+	font-size: xx-large;
+
+	* {
+		all: initial;
+		font-family: inherit;
+		font-size: xx-large;
+		background-color: transparent;
+		color: inherit;
+	}
+
+	.volume {
+		.muted {
+			color: rgba(100, 100, 100, 0.9);
+		}
+
+		scale trough {
+			font-size: medium;
+			background-color: rgba(100, 100, 100, 0.9);
+			border-radius: 1em;
+			min-height: 1em;
+			min-width: 20em;
+
+			highlight {
+				background-color: rgba(200, 200, 200, 0.9);
+				border-radius: 1em;
+			}
+		}
+	}
+
+	.player {
+
+		.image {
+			border-radius: 18px;
+		}
+
+		.title {
+			font-size: x-large;
+		}
+
+		.artist {
+			font-size: small;
+		}
+
+		.status {
+			font-size: 1.6em;
+		}
+	}
+
+	.screenbrightness {
+		scale trough {
+			font-size: medium;
+			background-color: rgba(100, 100, 100, 0.9);
+			border-radius: 1em;
+			min-height: 1em;
+			min-width: 20em;
+
+			highlight {
+				background-color: rgba(200, 200, 200, 0.9);
+				border-radius: 1em;
+			}
+		}
+	}
+
+	.powerprofiles {
+		box>label {
+			padding: 0.4em;
+		}
+
+		.current {
+			font-size: 1.2em;
+			background-color: rgba(200, 200, 200, 0.6);
+			color: rgba(50, 50, 50, 0.9);
+			border-radius: 0.5em;
+		}
+
+		.text {
+			font-size: x-large;
+			padding: 0.4em 0;
+		}
+	}
+}
+
+.powermenu {
+	background-color: transparent;
+
+	* {
+		all: initial;
+		font-family: inherit;
+		font-size: x-large;
+		background-color: transparent;
+		color: inherit;
+	}
+
+	.wrapper {
+		background-color: rgba(100%, 100%, 100%, 0.75);
+		color: black;
+		// background-color: black;
+		border-radius: 0.6em;
+	}
+
+	.option {
+		padding: 0.2em;
+
+		.icon {
+			font-size: 4.6em;
+			font-weight: 500;
+		}
+
+		.icon-v {
+			padding: 1em 0.2em;
+		}
+
+		.icon-h {
+			padding: 1em 0.4em;
+		}
+
+		.text {
+			font-size: 2.6em;
+			font-weight: bold;
+			padding: 0 0.6em 0 0;
+		}
+	}
+
+	.back {
+		padding: 0;
+
+		* {
+			font-size: 5em;
+			font-weight: 500;
+		}
+	}
+}
+
+.nerd-font {
+	font-family: "Noto Sans", "NotoSans Nerd Font Propo",  sans-serif;
+}
+
+.ms-font {
+	font-family: "Noto Sans", "Material Symbols Rounded", "NotoSans Nerd Font Propo", sans-serif;
+}
+
+.color-nix {
+	color: #7ebae4;
+}
+
+.color-wayland {
+	color: #FFBC00;
+}
+

@@ -19,7 +19,6 @@
     nautilus
     gnome-system-monitor
     loupe
-    kdePackages.plasma-systemmonitor
     kdePackages.dolphin
     kdePackages.gwenview # image viewer
     kdePackages.kalk
@@ -29,7 +28,7 @@
     eww
     quickshell
     (hyprlock.overrideAttrs (previousAttrs: {
-      patches = (previousAttrs.patches or []) ++ [
+      patches = (previousAttrs.patches or [ ]) ++ [
         # Add support for mixed percentage/pixel in one axis of a layout value
         (fetchpatch2 {
           url = "https://github.com/Shiphan/hyprlock/commit/d9e53881e729a6be304ab5b30018bd5124306e70.patch";

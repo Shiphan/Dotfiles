@@ -1,70 +1,100 @@
 { config, pkgs, ... }:
 
+let
+  script = imageDir: ''
+    mkdir -p "${imageDir}/tpmstate"
+    "${pkgs.swtpm}/bin/swtpm" socket --tpm2 \
+      --tpmstate dir="${imageDir}/tpmstate" \
+      --ctrl type=unixio,path="${imageDir}/swtpm-sock" \
+      &
+    SWTPM_PID=$!
+
+    "${pkgs.qemu}/bin/qemu-system-x86_64" \
+      -monitor stdio \
+      -enable-kvm \
+      -cpu host,topoext=on,kvm=off,-hypervisor \
+      -smp 8,sockets=1,cores=4,threads=2,maxcpus=8 \
+      -vga virtio \
+      -m 12G \
+      -machine q35 \
+      -usb -device usb-tablet \
+      -audio pipewire,model=hda \
+      -nic user,model=virtio-net-pci \
+      -rtc base=localtime \
+      -smbios type=0,vendor="$(cat /sys/class/dmi/id/bios_vendor)",version="$(cat /sys/class/dmi/id/bios_version)",date="$(cat /sys/class/dmi/id/bios_date)",release="$(cat /sys/class/dmi/id/bios_release)" \
+      -smbios type=1,manufacturer="$(cat /sys/class/dmi/id/sys_vendor)",product="$(cat /sys/class/dmi/id/product_name)",version="$(cat /sys/class/dmi/id/product_version)" \
+      -boot order=dc,menu=on \
+      -drive file="${pkgs.OVMFFull.fd}/FV/OVMF_CODE.fd",format=raw,readonly=on,if=pflash \
+      -drive file="${imageDir}/OVMF_VARS.ms.fd",format=raw,if=pflash \
+      -chardev socket,id=chrtpm,path="${imageDir}/swtpm-sock" \
+      -tpmdev emulator,id=tpm0,chardev=chrtpm \
+      -device tpm-tis,tpmdev=tpm0 \
+      -drive file="${imageDir}/image_file.img",if=virtio
+
+    echo "Waiting for swtpm to exit..."
+    wait $SWTPM_PID
+  '';
+in
 {
   home.packages = with pkgs; [
     qemu
-    # OVMF
-    # swtpm
+    OVMFFull.fd
+    swtpm
   ];
   xdg.desktopEntries = {
     "windows-10" = {
       name = "Windows 10";
       icon = "qemu";
-      # icon = "${pkgs.qemu}/share/icons/hicolor/scalable/apps/qemu.svg";
       terminal = true;
-      exec = "${pkgs.writeShellScript "qemu-windows-11" ''
-        "${pkgs.qemu}/bin/qemu-system-x86_64" \
-          -monitor stdio \
-          -enable-kvm \
-          -cpu host \
-          -vga virtio \
-          -m 12G \
-          -machine q35 \
-          -usb -device usb-tablet \
-          -boot d \
-          -cdrom ${config.home.homeDirectory}/Downloads/Win10_22H2_Chinese_Traditional_x64v1.iso \
-          ${config.home.homeDirectory}/.local/share/qemu-img/image_file_1
-      ''}";
+      exec = "${pkgs.writeShellScript "qemu-windows-10" (
+        script "${config.xdg.dataHome}/qemu-img/windows-10"
+      )}";
     };
-    # FIXME: windows 11 vm not work
-    /*
-      "windows-11" = {
-        name = "Windows 11";
-        icon = "qemu";
-        # icon = "${pkgs.qemu}/share/icons/hicolor/scalable/apps/qemu.svg";
-        terminal = true;
-        exec = "${pkgs.writeShellScript "qemu-windows-11" ''
-          # cp -n ${pkgs.OVMF.fd}/FV/OVMF_CODE.fd ${config.home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd
-          # chmod +w ${config.home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd
+    "windows-11" = {
+      name = "Windows 11";
+      icon = "qemu";
+      terminal = true;
+      exec =
+        let
+          # INFO: before connect windows 11 vm to internet, you can still use personalization
+          script = imageDir: ''
+            mkdir -p "${imageDir}/tpmstate"
+            "${pkgs.swtpm}/bin/swtpm" socket --tpm2 \
+              --tpmstate dir="${imageDir}/tpmstate" \
+              --ctrl type=unixio,path="${imageDir}/swtpm-sock" \
+              &
+            SWTPM_PID=$!
 
-          # swtpm socket --tpm2 --tpmstate dir=${config.home.homeDirectory}/.local/share/qemu-img/tpm --ctrl type=unixio,path=${config.home.homeDirectory}/.local/share/qemu-img/tpm/swtpm-sock &
+            "${pkgs.qemu}/bin/qemu-system-x86_64" \
+              -monitor stdio \
+              -enable-kvm \
+              -cpu host,topoext=on,kvm=off,-hypervisor \
+              -smp 8,sockets=1,cores=4,threads=2,maxcpus=8 \
+              -vga virtio \
+              -m 12G \
+              -machine q35 \
+              -usb -device usb-tablet \
+              -audio pipewire,model=hda \
+              -nic none \
+              -rtc base=localtime \
+              -smbios type=0,vendor="$(cat /sys/class/dmi/id/bios_vendor)",version="$(cat /sys/class/dmi/id/bios_version)",date="$(cat /sys/class/dmi/id/bios_date)",release="$(cat /sys/class/dmi/id/bios_release)" \
+              -smbios type=1,manufacturer="$(cat /sys/class/dmi/id/sys_vendor)",product="$(cat /sys/class/dmi/id/product_name)",version="$(cat /sys/class/dmi/id/product_version)" \
+              -boot order=dc,menu=on \
+              -drive file="${pkgs.OVMFFull.fd}/FV/OVMF_CODE.fd",format=raw,readonly=on,if=pflash \
+              -drive file="${imageDir}/OVMF_VARS.ms.fd",format=raw,if=pflash \
+              -chardev socket,id=chrtpm,path="${imageDir}/swtpm-sock" \
+              -tpmdev emulator,id=tpm0,chardev=chrtpm \
+              -device tpm-tis,tpmdev=tpm0 \
+              -drive file="${imageDir}/image_file.img",if=ide
 
-          qemu-system-x86_64 \
-            -monitor stdio \
-            -enable-kvm \
-            -cpu host \
-            -vga virtio \
-            -m 12G \
-            -machine q35 \
-            -device amd-iommu \
-            -bios ${pkgs.OVMF.fd}/FV/OVMF.fd \
-            -chardev socket,id=chrtpm,path=${config.home.homeDirectory}/.local/share/qemu-img/tpm/swtpm-sock \
-            -tpmdev emulator,id=tpm0,chardev=chrtpm \
-            -device tpm-tis,tpmdev=tpm0 \
-            -boot d \
-            -cdrom ${config.home.homeDirectory}/Downloads/Win10_22H2_Chinese_Traditional_x64v1.iso \
-            ${config.home.homeDirectory}/.local/share/qemu-img/image_file_1
+              # -nic user,model=virtio-net-pci \
+              # -drive file="${imageDir}/image_file.img",if=virtio
 
-            # -boot menu=on \
-            # -cdrom ${config.home.homeDirectory}/Downloads/Win11_24H2_Chinese_Traditional_x64.iso \
-            # -cdrom ${config.home.homeDirectory}/Downloads/archlinux-2024.10.01-x86_64.iso \
-            # -drive if=pflash,format=raw,readonly=on,file=/nix/store/18fwgvs3k4mkp8i8j53clr83787dfqwp-OVMF-202408-fd/FV/OVMF_CODE.fd \
-            # -drive if=pflash,format=raw,file=${config.home.homeDirectory}/.local/share/qemu-img/OVMF_VARS.fd \
-
-            # -cdrom ${config.home.homeDirectory}/Downloads/archlinux-2024.10.01-x86_64.iso \
-            # -drive file=${config.home.homeDirectory}/.local/share/qemu-img/image_file_1,format=qcow2
-        ''}";
-      };
-    */
+            echo "Waiting for swtpm to exit..."
+            wait $SWTPM_PID
+          '';
+        in
+        "${pkgs.writeShellScript "qemu-windows-11" (script "${config.xdg.dataHome}/qemu-img/windows-11")}";
+    };
   };
 }
