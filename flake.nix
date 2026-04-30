@@ -18,12 +18,6 @@
       url = "github:Shiphan/kde-svg-cursor2hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    /*
-      firefox-nightly = {
-        url = "github:nix-community/flake-firefox-nightly";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-    */
   };
 
   outputs =
@@ -54,7 +48,6 @@
           ./modules/desktop-environment.nix
           ./modules/git.nix
           ./modules/xdg-config-home.nix
-          # ./modules/firefox.nix
           ./modules/qemu-windows-vm.nix
           ./modules/qemu-arch-vm.nix
           nvim-dependencies.home-manager-module

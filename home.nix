@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  # firefox-nightly,
   self-pkgs,
   ...
 }:
@@ -53,7 +52,6 @@
   # environment.
   home.packages = with pkgs; [
     firefox
-    # args.firefox-nightly.packages.${pkgs.system}.firefox-nightly
     chromium
     # ladybird
     # servo
