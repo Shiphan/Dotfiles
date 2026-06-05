@@ -159,7 +159,12 @@
   };
 
   programs = {
-    neovim.enable = true;
+    neovim = {
+      enable = true;
+      sideloadInitLua = true;
+      withRuby = false;
+      withPython3 = false;
+    };
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
