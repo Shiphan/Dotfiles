@@ -30,13 +30,4 @@
       };
     };
   };
-
-  console = {
-    keyMap = "us";
-    font = "ter-v16n";
-    packages = with pkgs; [
-      terminus_font
-    ];
-    # useXkbConfig = true; # use xkb.options in tty.
-  };
 }

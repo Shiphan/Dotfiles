@@ -24,6 +24,9 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # TODO: This is for building raspberry pi image, consider removing it
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   networking = {
     hostName = "nixos-laptop"; # Define your hostname.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -59,7 +62,7 @@
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
     # Enable the OpenSSH daemon.
-    openssh.enable = true;
+    openssh.enable = false;
     # Enable the Avahi daemon for mDNS.
     avahi = {
       enable = true;

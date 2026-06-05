@@ -12,15 +12,18 @@
       settings = {
         Theme.CursorTheme = "Breeze_Light";
       };
+      extraPackages = with pkgs; [
+        kdePackages.qtmultimedia
+      ];
     };
   };
   environment.systemPackages = with pkgs; [
-    # kdePackages.plasma-desktop
-    # catppuccin-sddm
     (sddm-astronaut.override {
       embeddedTheme = "pixel_sakura";
     })
-    kdePackages.qtmultimedia
+    # catppuccin-sddm
     kdePackages.breeze
   ];
+  # Remember last session for each user
+  services.accounts-daemon.enable = true;
 }

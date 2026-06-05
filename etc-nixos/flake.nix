@@ -2,12 +2,12 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    # nixos-hardware.url = "github:nixos/nixos-hardware/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:nixos/nixos-hardware/master";
   };
 
   outputs =
-    { self, nixpkgs, ... }@args:
+    { self, nixpkgs, nixos-hardware, ... }@args:
     let
       system = "x86_64-linux";
     in
@@ -24,7 +24,7 @@
           ./modules/hyprland.nix
           ./modules/fonts.nix
           ./modules/framework-laptop.nix
-          # args.nixos-hardware.nixosModules.framework-13-7040-amd
+          nixos-hardware.nixosModules.framework-13-7040-amd
         ];
       };
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
